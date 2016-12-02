@@ -1,7 +1,7 @@
 import * as types from './actions'
 
 const initialState = {
-  test: "test"
+  test: 'test'
 }
 
 export default function reducer(state = initialState, action) {
@@ -9,7 +9,7 @@ export default function reducer(state = initialState, action) {
     case types.PLACEHOLDER:
       return {
         ...state,
-        test: "test2"
+        test: 'test2'
       }
     default:
       return state

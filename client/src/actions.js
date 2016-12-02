@@ -1,4 +1,4 @@
-export const PLACEHOLDER = 'PLACEHOLDER';
+export const PLACEHOLDER = 'PLACEHOLDER'
 
 export function placeholder() {
   return {

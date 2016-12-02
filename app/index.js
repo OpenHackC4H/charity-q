@@ -1,0 +1,14 @@
+const log = require('winston')
+const server = require('./http/server')
+const config = require('./config')
+
+log.level = config.logLevel
+
+server.listen().then(log.info)
+.then(() => {
+  log.info('App is running')
+})
+.catch(err => {
+  log.error(`Failed to setup application: ${err}`)
+  if(err.stack) log.error(`Stack: ${err.stack}`)
+})

@@ -1,3 +1,4 @@
+<<<<<<< 97fd9d64a70c4f7aac853b49669bf32caa39ee3e
 # Mac
 .DS_Store
 
@@ -38,3 +39,6 @@ jspm_packages
 
 # Optional REPL history
 .node_repl_history
+
+# Custom
+.secret

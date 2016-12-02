@@ -2,6 +2,10 @@
 # Mac
 .DS_Store
 
+# Webpack
+
+bundle.js
+
 # Logs
 logs
 *.log

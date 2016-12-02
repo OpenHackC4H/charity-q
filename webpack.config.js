@@ -2,7 +2,7 @@ module.exports = {
   entry: './client/src/index.js',
   output: {
     filename: 'bundle.js',
-    path: './public'
+    path: './static'
   },
   module: {
     loaders: [
@@ -16,4 +16,4 @@ module.exports = {
       }
     ]
   }
-};
+}

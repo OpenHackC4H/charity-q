@@ -12,6 +12,7 @@ app.use(allowCors)
 app.use('/donation', require('./routes/donation'))
 app.use('/recipient', require('./routes/recipient'))
 app.use('/bank', require('./routes/bank'))
+app.use('/recipient', require('./routes/recipient'))
 app.use('/', fileServer)
 
 const listen = () => {

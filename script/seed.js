@@ -8,7 +8,7 @@ const donations = (n, state) => {
     _id: `donation_${state}_${i}`,
     type: 'donation',
     state,
-    amount: random(1000), // 0 - 1000
+    amount: random(195) + 5, // 5 - 200
     time: Date.now() - random(120000),
     email: `fname.lname${i}@email.com`,
     pattern: patterns[random(patterns.length)]

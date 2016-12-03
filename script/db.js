@@ -62,7 +62,7 @@ const deleteData = () => {
 const loadData = () => {
   log.info('Loading data...')
 
-  const inQueue = seed.donations(10, 'in_queue')
+  const inQueue = seed.donations(30, 'in_queue')
   const spent = seed.donations(5, 'spent')
   const spending = seed.spending(spent, 'stuff')
   const recipients = seed.recipients

@@ -2,6 +2,7 @@ import 'babel-polyfill'
 import React from 'react'
 import ReactDOM from 'react-dom'
 import App from './components/app'
+import Admin from './components/admin'
 import { createStore, applyMiddleware } from 'redux'
 import createSagaMiddleware from 'redux-saga'
 import { Provider } from 'react-redux'
@@ -22,6 +23,7 @@ ReactDOM.render(
   <Provider store={store}>
     <Router history={hashHistory}>
       <Route path='/' component={App} />
+      <Route path='/admin' component={Admin} />
     </Router>
   </Provider>,
   document.getElementById('app')

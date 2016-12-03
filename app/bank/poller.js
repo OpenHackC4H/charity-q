@@ -1,6 +1,7 @@
 const log = require('winston')
 const bank = require('./index')
-const db = require('../database/donation')
+const db = require('../database/spending')
+const spend = require('../service/spend')
 
 const today = () => {
   const fromTime = new Date()
@@ -32,13 +33,11 @@ module.exports = {
     poll: () => {
       setInterval(() => {
         bank.readTransactions(opt, (data) => {
-          db.spent(opt.fromTime, new Date().getTime())
+          db.readIds()
           .then(result => {
             const newTrans = data.filter(filterHandledTransactions(result))
 
-            log.debug('Found ', newTrans.length, ' transactions')
             if (newTrans.length > 0){
-              log.debug('Updating database ...')
               transObjs = newTrans.map((t) => {
                 return {
                   _id: t.id,
@@ -50,14 +49,12 @@ module.exports = {
                   currency: t.details.value.currency,
                   amount: parseFloat(t.details.value.amount)
                 }
-                transObjs.forEach(t => {
-                    spend(t)
-                    .then(r => console.log(r))
-                    .catch(e => console.log(e))
-                })
               })
-              console.log(transObjs)
-              log.debug('Updating database ...')
+              transObjs.forEach(t => {
+                  spend(t)
+                  .then(r => log.info(r))
+                  .catch(e => log.info(e))
+              })
             }
           })
           .catch(err => {

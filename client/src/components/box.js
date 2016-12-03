@@ -14,7 +14,8 @@ export default class Box extends Component {
       height: this.props.height || 400,
       boxShadow: `inset 0 0 0 1000px ${backgroundColor}`,
       fontWeight: '600',
-      marginTop: '-10px'
+      marginTop: '-10px',
+      borderRadius: this.props.rounded ? '5px' : '0'
     }
     
     return(

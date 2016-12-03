@@ -1,5 +1,5 @@
 export const colors = {
-  
+  highlight: 'rgb(254, 228, 152)'
 }
 
 export const text = {

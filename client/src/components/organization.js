@@ -3,6 +3,7 @@ import * as styles from '../style'
 import Queue from './queue'
 import Statistics from './statistics'
 import Donate from './donate'
+import MyDonation from './mydonation'
 
 const mockQueue = [
   { id: 1, amount: 200 },
@@ -23,6 +24,7 @@ export default class Organization extends Component {
         <p style={{...styles.text.header, textAlign: 'center'}}>SIDA</p>
         <div style={{display: 'flex', justifyContent: 'space-around'}}>
           <Queue donations={mockQueue}/>
+          <MyDonation />
           <Statistics />
         </div>
         <Donate />

@@ -25,7 +25,7 @@ const queueGenerator = (donation, i, totalAmount, queueHeight) => {
   
   if (i === 2) {
     //Highligthed donation (yours)
-    backgroundColor = 'rgb(254, 228, 152)'
+    backgroundColor = styles.colors.highlight
     borderBottom = '4px solid rgb(254, 255, 76)'
   } else {
     backgroundColor = 'rgb(160, 167, 201)'

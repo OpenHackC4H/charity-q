@@ -14,7 +14,7 @@ export default class Header extends Component {
     }
     return(
       <div style={header}>
-        <div style={logo}>Q - Red Cross</div>
+        <div style={logo}>Q - Untitled Charity Org</div>
       </div>
     )
   }

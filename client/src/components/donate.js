@@ -67,15 +67,11 @@ export default class Donate extends Component {
       width: '250px'
     }
 
-    let backgroundColor, height, borderBottom
-    backgroundColor = 'rgb(160, 167, 201)'
-    borderBottom = `4px solid rgb(204, 226, 255)`
-    height = 50
-
     const donationStyle = {
-      backgroundColor,
-      height,
-      borderBottom
+      backgroundColor: 'rgb(160, 167, 201)',
+      height: '40px',
+      borderBottom: '4px solid rgb(204, 226, 255)',
+      margin: '20px'
     }
 
     return(
@@ -88,7 +84,7 @@ export default class Donate extends Component {
             { this.renderInput('Email', 'you@example.com') }
             { this.renderInput('Amount', '€50') }
             <div onClick={this.onDonateClick.bind(this)} style={{...styles.button, marginTop: '10px'}}>Pay with card</div> 
-            <div style={disclaimer}>The Red Cross will charge 15% for daily running costs</div>
+            <div style={disclaimer}>Untitled Charity Org will charge 15% for daily running costs</div>
             <div style={link}>Read More</div>   
           </div>
         </div>
@@ -97,7 +93,8 @@ export default class Donate extends Component {
            <div>
               <div style={title}>Style It!</div>
               <div style={disclaimer}>Your donation has entitled you to choose 1 custom style for your donation</div>
-              <Donation style={donationStyle} />
+              <Donation donationStyle={donationStyle} />
+              <div style={{...styles.button, marginTop: '10px'}}>Donate</div> 
            </div>
          )}
         </div>

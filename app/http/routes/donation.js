@@ -4,7 +4,7 @@ const donation = require('../../database/donation')
 const router = express.Router()
 
 const queue = (req, res, next) => {
-  donation.queue()
+  donation.queueFull()
   .then(result => {
     res.json(result)
   })

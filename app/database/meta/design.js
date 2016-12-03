@@ -4,7 +4,7 @@ module.exports = {
     queue: {
       map: function(doc) {
         if (doc.type === 'donation' && doc.state === 'in_queue') {
-          emit(doc.email, { _id: doc._id, _rev: doc._rev, email: doc.email, amount: doc.amount })
+          emit(doc.email, doc)
         }
       }
     },

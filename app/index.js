@@ -7,7 +7,7 @@ log.level = config.logLevel
 
 server.listen().then(log.info)
 .then(() => {
-  //poller.poll({interval: 5000, fromTime: poller.today(), account: 'q-organisation', expenses: false})
+  if(config.obp.active) poller.poll()
   log.info('App is running')
 })
 .catch(err => {

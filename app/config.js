@@ -8,6 +8,7 @@ const config = {
     port: 3000
   },
   obp: {
+    active: process.env.OBP_ACTIVE,
     userId: 'ccaec25d-214f-4ec3-a561-b3e0ee87e8a7',
     bankId: 'rbs',
     token: process.env.OBP_TOKEN,

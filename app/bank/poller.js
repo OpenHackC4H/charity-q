@@ -2,6 +2,16 @@ const log = require('winston')
 const bank = require('./index')
 const db = require('../database/donation')
 
+const today = () => {
+  const fromTime = new Date()
+  fromTime.setUTCHours(0)
+  fromTime.setUTCMinutes(0)
+  fromTime.setUTCSeconds(0)
+  fromTime.setUTCMilliseconds(0)
+
+  return fromTime.getTime()
+}
+
 function filterHandledTransactions(handledTrans) {
     return function(t) {
         const found = handledTrans.find((ht) => {
@@ -11,8 +21,15 @@ function filterHandledTransactions(handledTrans) {
     }
 }
 
+const opt = {
+  interval: 5000,
+  fromTime: today(),
+  account: 'q-organisation',
+  expenses: false
+}
+
 module.exports = {
-    poll: (opt) => {
+    poll: () => {
       setInterval(() => {
         bank.readTransactions(opt, (data) => {
           db.spent(opt.fromTime, new Date().getTime())
@@ -40,7 +57,7 @@ module.exports = {
                 })
               })
               console.log(transObjs)
-              log.info('Updating database ...')
+              log.debug('Updating database ...')
             }
           })
           .catch(err => {
@@ -48,14 +65,5 @@ module.exports = {
           })
         })
       }, opt.interval)
-    },
-    today: () => {
-      const fromTime = new Date()
-      fromTime.setUTCHours(0)
-      fromTime.setUTCMinutes(0)
-      fromTime.setUTCSeconds(0)
-      fromTime.setUTCMilliseconds(0)
-
-      return fromTime.getTime()
     }
 }

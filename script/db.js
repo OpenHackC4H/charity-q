@@ -78,6 +78,10 @@ switch (command) {
     return updateViews()
   case 's':
     return loadData()
+  case 'r':
+    deleteData()
+    loadData()
+    return
   case 'd':
     return deleteData()
   default:

@@ -16,8 +16,8 @@ const read = (req, res, next) => {
 
 const create = (req, res, next) => {
   spend(req.body)
-  .then(() => {
-    res.end()
+  .then(result => {
+    res.json(result)
   })
   .catch(err => {
     if(err.name === 'overspending') {

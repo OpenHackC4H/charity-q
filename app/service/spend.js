@@ -34,4 +34,7 @@ module.exports = (s) => {
     s.donations = spent_ids
     return spending.create(s)
   })
+  .then(() => {
+    return spent_ids
+  })
 }

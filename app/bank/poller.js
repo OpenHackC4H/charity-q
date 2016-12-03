@@ -19,13 +19,13 @@ module.exports = {
           .then(result => {
             const newTrans = data.filter(filterHandledTransactions(result))
 
-            log.info('Found ', newTrans.length, ' transactions')
+            log.debug('Found ', newTrans.length, ' transactions')
             if (newTrans.length > 0){
-              log.info('Updating database ...')
+              log.debug('Updating database ...')
             }
           })
           .catch(err => {
-            log.info(err)
+            log.error(err)
           })
         })
       }, opt.interval)

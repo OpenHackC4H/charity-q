@@ -18,7 +18,17 @@ const view = (design, name, params = {}) => (
   })
 )
 
+const get = id => (
+  new Promise((resolve, reject) => {
+    db.get(id, (err, body) => {
+      if(err) return reject(err)
+      resolve(body)
+    });
+  })
+)
+
 module.exports = {
   insert,
-  view
+  view,
+  get
 }

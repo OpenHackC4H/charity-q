@@ -6,17 +6,28 @@ const getTags = () => {
 }
 
 const tag = (account, tag) => {
-  data = {
-    _id: account,
-    account: account,
-    type: 'recipient',
-    tags: [tag]
-  }
-  return db.insert(data)
+  return db.get(account)
+  .then(body => {
+    body.tags.push(tag)
+    return db.insert(body)
+  })
+  .catch(err => {
+    body = {
+      _id: account,
+      account: account,
+      type: 'recipient',
+      tags: [tag]
+    }
+    return db.insert(body)
+  })
 }
 
 const untag = (account, tag) => {
-  //TODO
+  return db.get(account)
+  .then(body => {
+    body.tags = body.tags.filter(x => x != tag)
+    return db.insert(body)
+  })
 }
 
 module.exports = {

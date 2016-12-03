@@ -1,7 +1,4 @@
-const nano = require('nano')
-const config = require('../config')
-const couchdb = nano(config.couchDb.url)
-const db = couchdb.use(config.couchDb.dbName)
+const db = require('./db').db
 
 const insert = (doc, id) => {
   return new Promise((resolve, reject) => {

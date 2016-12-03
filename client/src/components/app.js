@@ -25,6 +25,7 @@ const mapDispatchToProps = dispatch => {
     loadInitialData: () => {
       console.log('loading')
       dispatch(actions.fetchQueue())
+      dispatch(actions.fetchTotalAmount())
     }
   }
 }

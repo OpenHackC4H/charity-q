@@ -5,6 +5,8 @@ export const FETCH_TAGS = 'FETCH_TAGS'
 export const ADD_TAG = 'ADD_TAG'
 export const REMOVE_TAG = 'REMOVE_TAG'
 export const SET_ACTIVE_DONATION = 'SET_ACTIVE_DONATION'
+export const FETCH_TOTAL_AMOUNT = 'FETCH_TOTAL_AMOUNT'
+export const FETCH_TOTAL_AMOUNT_DONE = 'FETCH_TOTAL_AMOUNT_DONE'
 
 export function fetchQueue() {
   return {
@@ -22,6 +24,19 @@ export function fetchQueueDone(queue) {
 export function fetchAccounts() {
   return {
     type: FETCH_ACCOUNTS
+  }
+}
+
+export function fetchTotalAmount() {
+  return {
+    type: FETCH_TOTAL_AMOUNT
+  }
+}
+
+export function fetchTotalAmountDone(totalAmount) {
+  return {
+    type: FETCH_TOTAL_AMOUNT_DONE,
+    totalAmount
   }
 }
 

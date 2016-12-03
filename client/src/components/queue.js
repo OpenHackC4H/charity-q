@@ -14,7 +14,6 @@ export class Queue extends Component {
   }
 
   onDonationClick(id) {
-    console.log(id)
     this.props.setActiveDonation(id)
   }
 
@@ -40,11 +39,10 @@ export class Queue extends Component {
       borderBottom,
       cursor: 'pointer'
     }
-    return <Donation onClick={() => this.onDonationClick(donation.id)} donationStyle={donationStyle} key={i}/>
+    return <Donation onClick={() => this.onDonationClick(donation._id)} donationStyle={donationStyle} key={i}/>
   }
 
   render(){
-    const totalAmount = this.props.donations.reduce((prev, curr) => prev + curr.amount, 0)
     const padding = 15
     const queueHeight = 400
     
@@ -52,9 +50,9 @@ export class Queue extends Component {
     const containerHeight = queueHeight + this.props.donations.length * borderHeight
 
     return(
-      <Box title={'€230 403'} titleColor={'lightgray'} backgroundColor={'rgba(210,210,210,.6)'} height={containerHeight}>
+      <Box title={'€' + this.props.totalAmount} titleColor={'lightgray'} backgroundColor={'rgba(210,210,210,.6)'} height={containerHeight}>
         <div style={{padding: `${padding}px`}}>
-          { this.props.donations.map((d, i) => this.queueGenerator(d, i, totalAmount, queueHeight-padding*2)) }
+          { this.props.donations.map((d, i) => this.queueGenerator(d, i, this.props.totalAmount, queueHeight-padding*2)) }
         </div>
       </Box>
     )
@@ -63,7 +61,8 @@ export class Queue extends Component {
 
 const mapStateToProps = state => {
   return {
-    donations: selectors.getQueue(state)
+    donations: selectors.getQueue(state),
+    totalAmount: selectors.getTotalAmount(state)
   }
 }
 

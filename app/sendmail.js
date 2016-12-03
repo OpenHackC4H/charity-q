@@ -2,15 +2,15 @@ const nodemailer = require('nodemailer');
 
 const senderMail = 'ostronostus%40gmail.com'
 const pass = 'bluemix123'
-const transporter = nodemailer.createTransport(`smtps://${senderMail}:${pass}@smtp.gmail.com`);
+const transporter = nodemailer.createTransport(`smtps://${senderMail}:${pass}@smtp.gmail.com`)
 
-const send = options => {
-    transporter.sendMail(options, function(error, info){
+const send = opts => {
+    transporter.sendMail(opts.options, function(error, info){
         if(error){
-            return console.log(error);
+            return console.log(error)
         }
         console.log('Message sent: ' + info.response);
-    });
+    })
 }
 
 const shareStr = `<a href="http://www.facebook.com/dialog/feed?

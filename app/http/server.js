@@ -1,4 +1,5 @@
 const express = require('express')
+const bodyParser = require('body-parser')
 const log = require('winston')
 const config = require('../config')
 const allowCors = require('./allowCors')
@@ -6,6 +7,7 @@ const fileServer = require('./fileServer')
 
 const app = express()
 
+app.use(bodyParser.json())
 app.use(allowCors)
 app.use('/donation', require('./routes/donation'))
 app.use('/', fileServer)

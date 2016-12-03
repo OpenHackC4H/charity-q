@@ -30,7 +30,10 @@ module.exports = (s) => {
       el.state = 'spent'
       return el
     })
-    spent_ids = spent.map(el => el._id)
+    spent_ids = spent.map(el => ({
+      id: el._id,
+      email: el.email
+    }))
     return db.bulk(spent)
   })
   .then(() => {

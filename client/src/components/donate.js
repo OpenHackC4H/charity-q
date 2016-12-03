@@ -45,7 +45,7 @@ export default class Donate extends Component {
           <div>
             { this.renderInput('Email', 'you@example.com') }
             { this.renderInput('Amount', '€50') }
-            <div style={styles.button}>Pay with card</div>    
+            <div style={{...styles.button, marginTop: '10px'}}>Pay with card</div>    
           </div>
         </div>
         <div></div>

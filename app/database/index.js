@@ -4,7 +4,7 @@ const insert = (doc, id) => {
   return new Promise((resolve, reject) => {
     db.insert(doc, id, (err, body) => {
       if(err) return reject(err)
-      resolve(doc)
+      resolve(body)
     })
   })
 }
@@ -13,7 +13,7 @@ const view = (design, name, params = {}) => (
   new Promise((resolve, reject) => {
     db.view(design, name, params, (err, body) => {
       if(err) return reject(err)
-        resolve(body)
+      resolve(body)
     })
   })
 )

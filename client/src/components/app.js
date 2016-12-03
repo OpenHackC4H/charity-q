@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Header from './header'
 import Organization from './organization'
 import { connect } from 'react-redux'
+import * as actions from '../actions'
 
 export class App extends Component {
 
@@ -19,18 +20,13 @@ export class App extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-
-  }
-}
-
 const mapDispatchToProps = dispatch => {
   return {
     loadInitialData: () => {
-      
+      console.log('loading')
+      dispatch(actions.fetchQueue())
     }
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(App)
+export default connect(null, mapDispatchToProps)(App)

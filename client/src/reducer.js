@@ -1,15 +1,15 @@
 import * as types from './actions'
 
 const initialState = {
-  test: 'test'
+  queue: []
 }
 
 export default function reducer(state = initialState, action) {
   switch (action.type) {
-    case types.PLACEHOLDER:
+    case types.FETCH_QUEUE_DONE:
       return {
         ...state,
-        test: 'test2'
+        queue: action.queue
       }
     default:
       return state

@@ -5,12 +5,12 @@ import Statistics from './statistics'
 import Donate from './donate'
 import MyDonation from './mydonation'
 
-const mockQueue = [
-  { id: 1, amount: 200 },
-  { id: 2, amount: 10 },
-  { id: 3, amount: 50 },
-  { id: 4, amount: 100 }
-]
+// const mockQueue = [
+//   { id: 1, amount: 200 },
+//   { id: 2, amount: 10 },
+//   { id: 3, amount: 50 },
+//   { id: 4, amount: 100 }
+// ]
 
 export default class Organization extends Component {
   render(){
@@ -23,7 +23,7 @@ export default class Organization extends Component {
       <div style={styles.mainBackground}>
         <p style={{...styles.text.header, textAlign: 'center'}}>SIDA</p>
         <div style={{display: 'flex', justifyContent: 'space-around'}}>
-          <Queue donations={mockQueue}/>
+          <Queue />
           <MyDonation />
           <Statistics />
         </div>

@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
 import * as styles from '../style'
 import Box from './box'
+import * as selectors from '../selectors'
+import { connect } from 'react-redux'
 
-export default class Queue extends Component {
+export class Queue extends Component {
   constructor(props){
     super(props)
   }
@@ -46,3 +48,12 @@ const queueGenerator = (donation, i, totalAmount, queueHeight) => {
 const Donation = props => {
   return <div style={props.donationStyle}></div>
 }
+
+
+const mapStateToProps = state => {
+  return {
+    donations: selectors.getQueue(state)
+  }
+}
+
+export default connect(mapStateToProps, null)(Queue)

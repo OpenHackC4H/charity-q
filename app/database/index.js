@@ -23,12 +23,22 @@ const get = id => (
     db.get(id, (err, body) => {
       if(err) return reject(err)
       resolve(body)
-    });
+    })
   })
 )
+
+const bulk = docs => {
+  new Promise((resolve, reject) => {
+    db.bulk({ docs }, (err, body) => {
+      if(err) return reject(err)
+      resolve(body)
+    })
+  })
+}
 
 module.exports = {
   insert,
   view,
-  get
+  get,
+  bulk
 }

@@ -88,6 +88,22 @@ function readOpts(opt) {
   }
 }
 
+function readTransactionsOpts(opt) {
+  return {
+    method: 'GET',
+    uri: `https://apisandbox.openbankproject.com/obp/v2.1.0/my/banks/rbs/accounts/${opt.account}/transactions`,
+    headers: stdHeaders,
+    json: true
+  }
+}
+
+function filterByTime(opt) {
+    return function(t) {
+      const tMs = new Date(t.details.completed).getTime()
+      return tMs >= opt.fromTime
+    }
+}
+
 module.exports = {
   createAcc: (opt) => {
     return rp(createOpts(opt))
@@ -103,5 +119,15 @@ module.exports = {
   },
   readAll: (opt) => {
     return rp(readAllOpts(opt))
+  },
+  readTransactions: (opt, cb) => {
+    rp(readTransactionsOpts(opt))
+    .then((data) => {
+      if (opt.fromTime){
+         cb(data.transactions.filter(filterByTime(opt)))
+      } else {
+        cb(data)
+      }
+    })
   }
 }

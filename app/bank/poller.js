@@ -65,7 +65,7 @@ module.exports = {
               transObjs.forEach(t => {
                   spend(t)
                   .then(r => {
-                    console.log(r)
+                    log.info(r)
                     log.info('handle spent ids')
                   })
                   .catch(e => log.info(e))

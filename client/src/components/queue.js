@@ -21,17 +21,17 @@ export default class Queue extends Component {
 }
 
 const queueGenerator = (donation, i, totalAmount, queueHeight) => {
-  let backgroundColor, height
-  if (i%2===0){
-    backgroundColor = 'rgb(160, 167, 201)'	
-  }
-  else {
+  let backgroundColor, height, borderBottom
+  
+  if (i === 2) {
+    //Highligthed donation (yours)
+    backgroundColor = 'rgb(254, 228, 152)'
+    borderBottom = '4px solid rgb(254, 255, 76)'
+  } else {
     backgroundColor = 'rgb(160, 167, 201)'
-    
+    borderBottom = '4px solid rgb(204, 226, 255)'
   }
-
-  const borderBottom = '4px solid rgb(204, 226, 255)'
-
+	
   height = donation.amount / totalAmount
   height = height * queueHeight
 
@@ -40,9 +40,9 @@ const queueGenerator = (donation, i, totalAmount, queueHeight) => {
     height,
     borderBottom
   }
-  return <div style={donationStyle} key={i}></div>
+  return <Donation donationStyle={donationStyle} key={i}/>
 }
 
-// const Donation = props => {
-//   return null
-// }
+const Donation = props => {
+  return <div style={props.donationStyle}></div>
+}

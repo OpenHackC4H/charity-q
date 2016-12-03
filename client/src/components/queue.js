@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import * as styles from '../style'
 import Box from './box'
+import Donation from './donation'
 import * as selectors from '../selectors'
 import { connect } from 'react-redux'
 
@@ -51,11 +52,6 @@ const queueGenerator = (donation, i, totalAmount, queueHeight) => {
   }
   return <Donation donationStyle={donationStyle} key={i}/>
 }
-
-const Donation = props => {
-  return <div style={props.donationStyle}></div>
-}
-
 
 const mapStateToProps = state => {
   return {

@@ -10,6 +10,7 @@
     "express": "^4.14.0",
     "express-session": "^1.14.2",
     "nano": "^6.2.0",
+    "nodemailer": "^2.6.4",
     "oauth": "^0.9.14",
     "request-promise": "^4.1.1",
     "require-promise": "^1.0.1",

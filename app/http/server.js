@@ -28,6 +28,7 @@ app.use((err, req, res, next) => {
 
   if(status === 500) {
     log.error(err.message || 'Server error')
+    log.error(err.stack)
     return res.end()
   }
 

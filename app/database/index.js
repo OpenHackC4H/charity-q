@@ -9,9 +9,9 @@ const insert = (doc, id) => {
   })
 }
 
-const view = (design, name) => (
+const view = (design, name, params = {}) => (
   new Promise((resolve, reject) => {
-    db.view(design, name, (err, body) => {
+    db.view(design, name, params, (err, body) => {
       if(err) return reject(err)
         resolve(body)
     })

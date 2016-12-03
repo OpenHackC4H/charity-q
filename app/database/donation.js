@@ -17,7 +17,18 @@ const queue = () => {
   })
 }
 
+const sum = (state) => {
+  const params = {
+    key: state
+  }
+  return db.view('views', 'sum', params)
+  .then(result => ({
+    sum: result.rows[0].value
+  }))
+}
+
 module.exports = {
   create,
-  queue
+  queue,
+  sum
 }

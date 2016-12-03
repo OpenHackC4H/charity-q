@@ -23,7 +23,19 @@ const create = (req, res) => {
   })
 }
 
+const sum = (req, res, next) => {
+  const state = req.query.state
+  donation.sum(state)
+  .then(result => {
+    res.json(result)
+  })
+  .catch(err => {
+    next(err)
+  })
+}
+
 router.post('/', create)
 router.get('/queue', queue)
+router.get('/sum', sum)
 
 module.exports = router

@@ -7,6 +7,16 @@ module.exports = {
           emit(doc.email, doc.amount)
         }
       }
+    },
+    sum: {
+      map: function(doc) {
+        if (doc.type === 'donation') {
+          emit(doc.state, doc.amount)
+        }
+      },
+      reduce: function(keys, values, rereduce) {
+        return sum(values)
+      }
     }
   }
 }

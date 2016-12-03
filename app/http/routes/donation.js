@@ -34,8 +34,22 @@ const sum = (req, res, next) => {
   })
 }
 
+const spent = (req, res, next) => {
+  const from = parseInt(req.query.from)
+  const to = parseInt(req.query.to)
+
+  donation.spent(from, to)
+  .then(result => {
+    res.json(result)
+  })
+  .catch(err => {
+    next(err)
+  })
+}
+
 router.post('/', create)
 router.get('/queue', queue)
 router.get('/sum', sum)
+router.get('/spent', spent)
 
 module.exports = router

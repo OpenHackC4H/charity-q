@@ -27,8 +27,19 @@ const sum = (state) => {
   }))
 }
 
+const spent = (from, to) => {
+  const params = {
+    startkey: from,
+    endkey: to
+  }
+  console.log(params)
+  return db.view('views', 'spent', params)
+  .then(result => result.rows.map(el => el.value))
+}
+
 module.exports = {
   create,
   queue,
-  sum
+  sum,
+  spent
 }

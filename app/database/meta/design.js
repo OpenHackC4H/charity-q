@@ -17,6 +17,13 @@ module.exports = {
       reduce: function(keys, values, rereduce) {
         return sum(values)
       }
+    },
+    spent: {
+      map: function(doc) {
+        if (doc.type === 'donation' && doc.state === 'spent') {
+          emit(doc.time, doc._id)
+        }
+      }
     }
   }
 }

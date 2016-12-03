@@ -53,13 +53,6 @@ export default class Donate extends Component {
       this.setState({activePattern: this.state.activePattern+1})
     }
   }
-
-  getPattern(id, patternStyle){
-    if(id === 0) return null
-    if(id === 1) return <div style={{...patternStyle, backgroundImage: 'url("assets/patterns&badges/oh_-06.png")'}}></div>
-    if(id === 2) return <div style={{...patternStyle, backgroundImage: 'url("assets/patterns&badges/oh_-07.png")'}}></div>
-    if(id === 3) return <div style={{...patternStyle, backgroundImage: 'url("assets/patterns&badges/oh_-08.png")'}}></div>
-  }
   
   render(){
     const background = {
@@ -100,13 +93,6 @@ export default class Donate extends Component {
       margin: '20px'
     }
 
-    const patternStyle = {
-      height: '40px',
-      width: donationWidth,
-      backgroundSize: '100%',
-      backgroundRepeat: 'repeat-y'
-    }
-
     return(
       <div style={background}>
         <div style={column}>
@@ -131,7 +117,7 @@ export default class Donate extends Component {
                 <div onClick={this.onLeftClick.bind(this)} style={{...styles.button, height: '30px', padding: '0 10px'}}>
                   Left
                 </div> 
-                <Donation pattern={this.getPattern(this.state.activePattern, patternStyle)}donationStyle={donationStyle} />
+                <Donation pattern={this.state.activePattern} donationStyle={donationStyle} />
                 <div onClick={this.onRightClick.bind(this)} style={{...styles.button, height: '30px', padding: '0 10px'}}>
                   Right
                 </div> 

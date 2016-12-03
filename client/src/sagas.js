@@ -11,12 +11,13 @@ export function* sagas() {
   console.log('setup saga')
   yield [
     takeLatest(actions.FETCH_TOTAL_AMOUNT, fetchTotalAmount),
-    takeLatest(actions.FETCH_QUEUE, fetchQueue)
+    takeLatest(actions.FETCH_QUEUE, fetchQueue),
+    takeLatest(actions.FETCH_ACCOUNTS, fetchAccounts)
   ]
 }
 
-export function fetchApi(url) {
-  return fetch(url)
+export function fetchApi(url, options = {}) {
+  return fetch(url, options)
     .then(response => response.json())
 }
 
@@ -45,3 +46,19 @@ export function* fetchTotalAmount() {
   }
 }
 
+export function* fetchAccounts() {
+  console.log('fetch accounts 1')
+  const options = {
+    headers: {
+      Authorization: 'DirectLogin token="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyIiOiIifQ.zXG9sAr_WE0hWDD3S4IsYS7_mLDCSCsF5HcfSI2m2xo"'
+    }
+  }
+  try {
+    const accounts = yield call(fetchApi, 'https://apisandbox.openbankproject.com/obp/v2.1.0/my/banks/rbs/accounts', options)
+    console.log('accounts:', accounts);
+    yield put(actions.fetchAccountsDone(accounts))
+  } catch(err) {
+    console.log(err)
+    // Error handling
+  }
+}

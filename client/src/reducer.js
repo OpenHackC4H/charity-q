@@ -28,6 +28,18 @@ export default function reducer(state = initialState, action) {
         ...state,
         activeDonation: action.id
       }
+    case types.FETCH_TAGS_DONE:
+      //TODO fix tags
+      return {
+        ...state,
+        accounts: action.accounts
+      }
+    case types.FETCH_ACCOUNTS_DONE:
+      console.log('fetch accounts done');
+      return {
+        ...state,
+        accounts: action.accounts
+      }
     default:
       return state
   }

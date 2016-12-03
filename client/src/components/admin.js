@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import * as styles from '../style.js'
 import Box from './box'
+import { connect } from 'react-redux'
+import * as actions from '../actions'
 
 const orgs = [
   { id: 'org1', values: [ 'tag1', 'tag2']},
@@ -18,7 +20,7 @@ const accounts = [
   { id: 'org6'}
 ]
 
-export default class Admin extends Component {
+export class Admin extends Component {
    renderRow(label, value){
     const text = {
       color: 'lightgrey',
@@ -30,6 +32,10 @@ export default class Admin extends Component {
         <div>{value}</div>
       </div>
     )
+  }
+
+  componentWillMount() {
+    this.props.loadInitialData()
   }
 
   renderInput(label, placeholder){
@@ -62,10 +68,10 @@ export default class Admin extends Component {
       <div style={{...styles.mainBackground, height: '650px'}}>
         <div style={{display: 'flex', justifyContent: 'space-around', flexWrap: 'wrap'}}>
           {
-            orgs.map(org => (
-              <Box title={org.id} height={'200px'}>
+            this.props.accounts.map(account => (
+              <Box title={account.id} height={'200px'}>
                 <div style={box}>
-                  { org.values.map(tag => this.renderRow(tag, 'X')) } 
+                  { account.values.map(tag => this.renderRow(tag, 'X')) } 
                   { this.renderInput('Add', 'Tag name')}
                 </div>
               </ Box>
@@ -76,3 +82,21 @@ export default class Admin extends Component {
     )
   }
 }
+
+const mapStateToProps = state => {
+  console.log('mapStateToProps, state:', state)
+  return {
+      accounts: state.accounts
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    loadInitialData: () => {
+      console.log('loading')
+      dispatch(actions.fetchAccounts())
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Admin)

@@ -9,25 +9,34 @@ const db = database.db
 
 const createDatabase = () => {
   log.info('Creating database...')
-  conn.db.create(dbName, (err) => {
-    if(err) log.error(err.message)
+  return new Promise((resolve, reject) => {
+    conn.db.create(dbName, (err) => {
+      if(err) return reject(err)
+      resolve()
+    })
   })
 }
 
 const deleteDatabase = () => {
   log.info('Deleting database...')
-  conn.db.destroy(dbName, (err) => {
-    if(err) log.error(err.message)
+  return new Promise((resolve, reject) => {
+    conn.db.destroy(dbName, (err) => {
+      if(err) return reject(err)
+      resolve()
+    })
   })
 }
 
 const updateViews = () => {
   log.info('Updating views...')
 
-  db.get('_design/views', (err, existing) => {
-    if(!err) designDoc._rev = existing._rev;
-    db.insert(designDoc, (err, body) => {
-      if(err) log.error(err.message)
+  return new Promise((resolve, reject) => {
+    db.get('_design/views', (err, existing) => {
+      if(!err) designDoc._rev = existing._rev
+      db.insert(designDoc, err => {
+        if(err) return reject(err)
+        resolve()
+      })
     })
   })
 }
@@ -38,7 +47,7 @@ const deleteData = () => {
   return new Promise(resolve => {
     db.list((err, body) => {
       if(err) return log.error(err.message)
-        const docs = body.rows
+      const docs = body.rows
       .filter(doc => !doc.id.includes('_design'))
       .map(doc => ({
         _id: doc.id,
@@ -72,21 +81,37 @@ const command = process.argv[2]
 
 switch (command) {
   case 'cd':
-    return createDatabase()
+    createDatabase()
+    break
   case 'dd':
-    return deleteDatabase()
+    deleteDatabase()
+    break
   case 'u':
-    return updateViews()
+    updateViews()
+    break
   case 's':
-    return loadData()
+    loadData()
+    break
   case 'r':
     deleteData().
     then(() => {
       loadData()
     })
-    return
+    break
   case 'd':
-    return deleteData()
+    deleteData()
+    break
+  case 'hard-r':
+    deleteDatabase()
+    .then(createDatabase)
+    .then(updateViews)
+    .then(loadData)
+    .then(() => {
+      log.info('Hard reset complete')
+    })
+    .catch(log.error)
+
+    break
   default:
     log.info('Incorrect usage')
 }

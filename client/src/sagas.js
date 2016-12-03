@@ -36,7 +36,7 @@ export function* fetchQueue() {
 export function* fetchTotalAmount() {
   console.log('saga')
   try {
-    const response = yield call(fetchApi, 'donation/sum')
+    const response = yield call(fetchApi, 'donation/sum?state=in_queue')
     
     yield put(actions.fetchTotalAmountDone(response.sum))
   } catch(err) {

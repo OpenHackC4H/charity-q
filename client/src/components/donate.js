@@ -87,9 +87,9 @@ export default class Donate extends Component {
     const donationWidth = '100px'
     const donationStyle = {
       backgroundColor: 'rgb(160, 167, 201)',
-      height: '40px',
+      height: 40,
       width: donationWidth,
-      borderBottom: '4px solid rgb(204, 226, 255)',
+      borderBottom: '2px solid rgb(204, 226, 255)',
       margin: '20px'
     }
 

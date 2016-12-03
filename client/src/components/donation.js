@@ -13,7 +13,6 @@ export default class Donation extends Component {
   }
 
   render(){
-    console.log(this.props.borderHeight)
     const height = this.props.donationStyle.height
     const patternStyle = {
       height: height + 'px',

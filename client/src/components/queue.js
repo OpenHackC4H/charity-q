@@ -39,7 +39,7 @@ export class Queue extends Component {
       borderBottom,
       cursor: 'pointer'
     }
-    return <Donation borderHeight={borderHeight} pattern={donation.pattern} onClick={() => this.onDonationClick(donation._id)} donationStyle={donationStyle} key={i}/>
+    return <Donation pattern={donation.pattern} onClick={() => this.onDonationClick(donation._id)} donationStyle={donationStyle} key={i}/>
   }
 
   render(){

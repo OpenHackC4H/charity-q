@@ -55,11 +55,13 @@ const deleteData = () => {
   })
 }
 
-const loadData = (ns) => {
+const loadData = () => {
   log.info('Loading data...')
 
-  const n = parseInt(ns) || 1
-  const docs = seed.donations(n)
+  const inQueue = seed.donations(10, 'in_queue')
+  const spent = seed.donations(5, 'spent')
+
+  const docs = inQueue.concat(spent)
   db.bulk({ docs }, (err) => {
     if(err) log.error(err.message)
   })
@@ -75,7 +77,7 @@ switch (command) {
   case 'u':
     return updateViews()
   case 's':
-    return loadData(process.argv[3])
+    return loadData()
   case 'd':
     return deleteData()
   default:

@@ -2,6 +2,7 @@ const db = require('./')
 
 const create = data => {
   data.type = 'donation'
+  data.state = 'in_queue'
   return db.insert(data)
 }
 

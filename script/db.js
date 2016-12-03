@@ -24,10 +24,18 @@ const deleteDatabase = () => {
 const updateViews = () => {
   log.info('Updating views...')
 
-  db.head('_design/views')
-  .then((err, res) => {
-    if(err) return log.error(err.message)
-    db.insert(Object.assign({}, designDoc, {_rev: res.etag.replace(/'/g, '')}))
+  db.head('_design/views', (err, body) => {
+    if(!err) {
+      const doc = Object.assign({}, designDoc, {_rev: body.etag.replace(/'/g, '')})
+      db.insert(doc, (err, body) => {
+        if(err) return log.error(err.message)
+      })
+      return
+    }
+
+    db.insert(designDoc, (err, body) => {
+      if(err) log.error(err.message)
+    })
   })
 }
 

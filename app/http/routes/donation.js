@@ -48,9 +48,20 @@ const spent = (req, res, next) => {
   })
 }
 
+const leaderboard = (req, res, next) => {
+  donation.leaderboard()
+  .then(result => {
+    res.json(result)
+  })
+  .catch(err => {
+    next(err)
+  })
+}
+
 router.post('/', create)
 router.get('/queue', queue)
 router.get('/sum', sum)
 router.get('/spent', spent)
+router.get('/leaderboard', leaderboard)
 
 module.exports = router

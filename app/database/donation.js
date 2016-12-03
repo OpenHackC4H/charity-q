@@ -18,6 +18,18 @@ const queueFull = () => {
   .then(result => result.rows.map(el => el.value))
 }
 
+const leaderboard = () => {
+  const params = {
+    group: true
+  }
+  return db.view('views', 'sum_email', params)
+  .then(result => {
+    return result.rows
+    .sort((a, b) => b.value - a.value)
+    .slice(0, 10)
+  })
+}
+
 const sum = (state) => {
   const params = {
     key: state
@@ -41,6 +53,7 @@ module.exports = {
   create,
   queue,
   queueFull,
+  leaderboard,
   sum,
   spent
 }

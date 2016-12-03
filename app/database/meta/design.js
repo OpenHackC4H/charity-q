@@ -18,6 +18,16 @@ module.exports = {
         return sum(values)
       }
     },
+    sum_email: {
+      map: function(doc) {
+        if (doc.type === 'donation' && doc.state === 'in_queue') {
+          emit(doc.email, doc.amount)
+        }
+      },
+      reduce: function(keys, values, rereduce) {
+        return sum(values)
+      }
+    },
     spent: {
       map: function(doc) {
         if (doc.type === 'donation' && doc.state === 'spent') {

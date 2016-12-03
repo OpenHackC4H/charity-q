@@ -7,7 +7,8 @@ const initialState = {
     { id: 3, amount: 50 },
     { id: 4, amount: 100 }
   ],
-  totalAmount: 32677
+  totalAmount: 32677,
+  activeDonation: ''
 }
 
 export default function reducer(state = initialState, action) {
@@ -21,6 +22,11 @@ export default function reducer(state = initialState, action) {
       return {
         ...state,
         queue: action.queue
+      }
+    case types.SET_ACTIVE_DONATION:
+      return {
+        ...state,
+        activeDonation: action.id
       }
     default:
       return state

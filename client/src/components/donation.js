@@ -4,7 +4,8 @@ export default class Donation extends Component {
   constructor(props){
     super(props)
   }
+
   render(){
-    return <div style={this.props.donationStyle}></div>
+    return <div onClick={this.props.onClick} style={this.props.donationStyle}></div>
   }
 }

@@ -3,6 +3,7 @@ import * as styles from '../style'
 import Box from './box'
 import Donation from './donation'
 import * as selectors from '../selectors'
+import * as actions from '../actions'
 import { connect } from 'react-redux'
 
 const borderHeight = 4
@@ -11,6 +12,8 @@ export class Queue extends Component {
   constructor(props){
     super(props)
   }
+
+
   render(){
     const totalAmount = this.props.donations.reduce((prev, curr) => prev + curr.amount, 0)
     const padding = 15
@@ -27,6 +30,10 @@ export class Queue extends Component {
       </Box>
     )
   }
+}
+
+const onDonationClick = () => {
+
 }
 
 const queueGenerator = (donation, i, totalAmount, queueHeight) => {
@@ -50,7 +57,7 @@ const queueGenerator = (donation, i, totalAmount, queueHeight) => {
     height,
     borderBottom
   }
-  return <Donation donationStyle={donationStyle} key={i}/>
+  return <Donation onClick={onDonationClick} donationStyle={donationStyle} key={i}/>
 }
 
 const mapStateToProps = state => {
@@ -59,4 +66,12 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps, null)(Queue)
+const mapDispatchToProps = dispatch => {
+  return {
+    setActiveDonation: (id) => {
+      dispatch(actions.setActiveDonation(id))
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Queue)

@@ -1,11 +1,32 @@
 const log = require('winston')
 const bank = require('./index')
+const db = require('../database/donation')
+
+function filterHandledTransactions(handledTrans) {
+    return function(t) {
+        const found = handledTrans.find((ht) => {
+          return t.id == ht
+        })
+        return found == undefined
+    }
+}
 
 module.exports = {
     poll: (opt) => {
       setInterval(() => {
         bank.readTransactions(opt, (data) => {
-//          console.log(data)
+          db.spent(opt.fromTime, new Date().getTime())
+          .then(result => {
+            const newTrans = data.filter(filterHandledTransactions(result))
+
+            log.info('Found ', newTrans.length, ' transactions')
+            if (newTrans.length > 0){
+              log.info('Updating database ...')
+            }
+          })
+          .catch(err => {
+            log.info(err)
+          })
         })
       }, opt.interval)
     },

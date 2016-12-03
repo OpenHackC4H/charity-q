@@ -104,6 +104,10 @@ function filterByTime(opt) {
     }
 }
 
+function filterByExpenses(d) {
+  return d.details.value.amount < 0
+}
+
 module.exports = {
   createAcc: (opt) => {
     return rp(createOpts(opt))
@@ -123,11 +127,16 @@ module.exports = {
   readTransactions: (opt, cb) => {
     rp(readTransactionsOpts(opt))
     .then((data) => {
+      data = data.transactions
       if (opt.fromTime){
-         cb(data.transactions.filter(filterByTime(opt)))
-      } else {
-        cb(data)
+         data = data.filter(filterByTime(opt))
       }
+
+      if (opt.expenses){
+        data = data.filter(filterByExpenses)
+      }
+
+      cb(data)
     })
   }
 }

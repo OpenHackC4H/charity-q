@@ -8,9 +8,8 @@ export default class Header extends Component {
     }
 
     const logo = {
-      fontSize: '22px',
+      fontSize: '30px',
       fontWeight: 'bold',
-      fontFamily: 'Garamond sans-serif',
       padding: '20px 20px'
     }
     return(

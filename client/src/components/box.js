@@ -1,13 +1,12 @@
 import React, { Component } from 'react'
+import * as styles from '../style'
 
 export default class Box extends Component {
   render(){
     const title = {
-      color: this.props.titleColor || 'white',
-      fontSize: '50px',
-      fontWeight: '900'
+      ...styles.text.title,
+      color: this.props.titleColor || styles.text.title.color
     }
-
     const backgroundColor = this.props.backgroundColor || 'rgba(0,0,0,.4)'
     const background = {
       width: 250,

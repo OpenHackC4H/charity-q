@@ -1,4 +1,5 @@
 const random = n => Math.floor(Math.random() * n)
+const patterns = [0, 0, 0, 1, 2, 3]
 
 const donations = (n, state) => {
   return new Array(n)
@@ -9,7 +10,8 @@ const donations = (n, state) => {
     state,
     amount: random(1000), // 0 - 1000
     time: Date.now() - random(120000),
-    email: `fname.lname${i}@email.com`
+    email: `fname.lname${i}@email.com`,
+    pattern: patterns[random(patterns.length)]
   }))
 }
 

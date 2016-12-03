@@ -6,7 +6,7 @@ import * as selectors from '../selectors'
 import * as actions from '../actions'
 import { connect } from 'react-redux'
 
-const borderHeight = 4
+const borderHeight = 2
 
 export class Queue extends Component {
   constructor(props){
@@ -31,7 +31,7 @@ export class Queue extends Component {
     
     height = donation.amount / totalAmount
     height = height * queueHeight
-
+    height = height - borderHeight
 
     const donationStyle = {
       backgroundColor,
@@ -39,7 +39,7 @@ export class Queue extends Component {
       borderBottom,
       cursor: 'pointer'
     }
-    return <Donation onClick={() => this.onDonationClick(donation._id)} donationStyle={donationStyle} key={i}/>
+    return <Donation borderHeight={borderHeight} pattern={donation.pattern} onClick={() => this.onDonationClick(donation._id)} donationStyle={donationStyle} key={i}/>
   }
 
   render(){

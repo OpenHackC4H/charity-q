@@ -13,11 +13,13 @@ export default class Donation extends Component {
   }
 
   render(){
+    console.log(this.props.borderHeight)
+    const height = this.props.donationStyle.height
     const patternStyle = {
-      height: '40px',
+      height: height + 'px',
       width: this.props.donationStyle.width,
       backgroundSize: '100%',
-      backgroundRepeat: 'repeat-y'
+      backgroundRepeat: 'repeat'
     }
 
     return (

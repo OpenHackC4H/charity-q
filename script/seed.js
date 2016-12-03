@@ -16,8 +16,8 @@ const donations = (n, state) => {
 }
 
 const spending = (donations, id) => {
-  donation_ids = donations.map(el => el._id)
-  amount = donations.map(el => el.amount).reduce((p, c) => p + c)
+  const donation_ids = donations.map(el => el._id)
+  const amount = donations.map(el => el.amount).reduce((p, c) => p + c)
   return {
     _id: `spending_${id}`,
     type: 'spending',

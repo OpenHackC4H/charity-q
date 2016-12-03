@@ -7,7 +7,11 @@ const create = data => {
 }
 
 const queue = () => {
-  return db.view('views', 'queue')
+  const params = {
+    descending: true
+  }
+
+  return db.view('views', 'queue', params)
   .then(result => result.rows.map(el => el.value))
 }
 

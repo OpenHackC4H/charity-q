@@ -21,5 +21,10 @@ export const mainBackground = {
 }
 
 export const button = {
-  backgroundColor: 'rgb(52, 75, 168)'	
+  backgroundColor: 'rgb(52, 75, 168)',
+  borderRadius: '5px',
+  color: 'white',
+  padding: '8px 0px',
+  textAlign: 'center',
+  cursor: 'pointer'
 }

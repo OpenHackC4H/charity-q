@@ -8,11 +8,12 @@ export default class Donate extends Component {
       display: 'flex',
       justifyContent: 'space-between',
       padding: '10px 10px',
-      color: 'lightgray'
+      color: 'lightgray',
+      alignItems: 'center'
     }
 
     const input = {
-      padding: '5px',
+      padding: '10px',
       borderRadius: '5px',
       border: 'none'
     }
@@ -44,7 +45,7 @@ export default class Donate extends Component {
           <div>
             { this.renderInput('Email', 'you@example.com') }
             { this.renderInput('Amount', '€50') }
-            <button style={styles.button}>Pay with card</button >    
+            <div style={styles.button}>Pay with card</div>    
           </div>
         </div>
         <div></div>

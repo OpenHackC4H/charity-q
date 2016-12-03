@@ -7,17 +7,15 @@ const queue = (req, res, next) => {
   donation.queue()
   .then(result => {
     res.json(result)
-    conosle.log('asdf')
   })
   .catch(err => {
-    conosle.log(err)
     next(err)
   })
 }
 
 const create = (req, res, next) => {
   donation.create(req.body)
-  .then(result => {
+  .then(() => {
     res.end()
   })
   .catch(err => {

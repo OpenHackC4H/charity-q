@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import * as styles from '../style'
-import Donation from './donation'
+import Donation, { KING_BADGE, ANGEL_BADGE }  from './donation'
 
 export default class Donate extends Component {
   constructor(props){
@@ -8,12 +8,17 @@ export default class Donate extends Component {
     this.state = {
       pimping: false,
       activePattern: 0,
-      totalPatterns: 4
+      totalPatterns: 4,
+      amount: 0
     }
   }
 
   onDonateClick() {
-    this.setState({pimping: true})
+    this.setState({pimping: true })
+  }
+
+  onAmountInput(event){
+    this.setState({amount: event.target.value })
   }
 
   renderInput(label, placeholder){
@@ -33,7 +38,7 @@ export default class Donate extends Component {
     return (
       <div style={rowStyle}>
         <div style={{marginRight: '10px'}}>{label}</div>
-        <input style={input} type='text' placeholder={placeholder}/>
+        <input onChange={this.onAmountInput.bind(this)} style={input} type='text' placeholder={placeholder}/>
       </div>
     )
   }
@@ -84,7 +89,7 @@ export default class Donate extends Component {
     const column = {
       width: '250px'
     }
-    const donationWidth = '100px'
+    const donationWidth = 100
     const donationStyle = {
       backgroundColor: 'rgb(160, 167, 201)',
       height: 40,
@@ -112,12 +117,13 @@ export default class Donate extends Component {
            <div>
               <div style={title}>Style It!</div>
               <div style={disclaimer}>Your donation has entitled you to choose a custom style for your donation</div>
-              
+              { this.state.amount > KING_BADGE  && this.state.amount < ANGEL_BADGE && <div style={disclaimer}>You donated more than €{KING_BADGE} and earned a medal!</div>}
+              { this.state.amount > ANGEL_BADGE && <div style={disclaimer}>You donated more than €{ANGEL_BADGE} and earned a medal!</div>}
               <div style={{display: 'flex', justifyContent:'space-between', alignItems: 'center' }}>
                 <div onClick={this.onLeftClick.bind(this)} style={{...styles.button, height: '30px', padding: '0 10px'}}>
                   Left
                 </div> 
-                <Donation pattern={this.state.activePattern} donationStyle={donationStyle} />
+                <Donation amount={this.state.amount} pattern={this.state.activePattern} donationStyle={donationStyle} />
                 <div onClick={this.onRightClick.bind(this)} style={{...styles.button, height: '30px', padding: '0 10px'}}>
                   Right
                 </div> 

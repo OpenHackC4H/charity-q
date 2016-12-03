@@ -1,10 +1,15 @@
 import React, { Component } from 'react'
+import * as styles from '../style'
 
 export default class Header extends Component {
   render(){
     const header = {
       height: '80px',
-      backgroundColor: '#00DA09'
+      backgroundColor: styles.colors.gray,
+      color: 'white',
+      display: 'flex',
+      padding: '0 20px',
+      alignItems: 'center'
     }
 
     const logo = {
@@ -14,7 +19,8 @@ export default class Header extends Component {
     }
     return(
       <div style={header}>
-        <div style={logo}>Q - Untitled Charity Org</div>
+        <img style={{height: '80%', width: 'auto'}} src={'assets/logo_small.png'}/>
+        <div style={logo}>for Untitled Charity Org</div>
       </div>
     )
   }

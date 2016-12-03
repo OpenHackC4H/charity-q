@@ -5,10 +5,18 @@ const create = data => {
   return db.insert(data)
 }
 
-const read = () => {
+const queue = () => {
+  return db.view('views', 'queue')
+  .then(result => {
+    return result.rows
+    .map(el => ({
+      email: el.key,
+      amount: el.value
+    }))
+  })
 }
 
 module.exports = {
   create,
-  read
+  queue
 }

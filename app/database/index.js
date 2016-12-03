@@ -9,21 +9,14 @@ const insert = (doc, id) => {
   })
 }
 
-const view = (design, name, startkey, endkey) => {
-  const params = {
-    group: true,
-    reduce: true,
-    startkey,
-    endkey
-  }
-
-  return new Promise((resolve, reject) => {
-    db.view(design, name, params, (err, body) => {
+const view = (design, name) => (
+  new Promise((resolve, reject) => {
+    db.view(design, name, (err, body) => {
       if(err) return reject(err)
-      resolve(body)
+        resolve(body)
     })
   })
-}
+)
 
 module.exports = {
   insert,

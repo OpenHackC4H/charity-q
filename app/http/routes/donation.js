@@ -3,6 +3,16 @@ const donation = require('../../database/donation')
 
 const router = express.Router()
 
+const queue = (req, res, next) => {
+  donation.queue()
+  .then(result => {
+    res.json(result)
+  })
+  .catch(err => {
+    next(err)
+  })
+}
+
 const create = (req, res) => {
   donation.create(req.body)
   .then(result => {
@@ -14,5 +24,6 @@ const create = (req, res) => {
 }
 
 router.post('/', create)
+router.get('/queue', queue)
 
 module.exports = router

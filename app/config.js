@@ -6,6 +6,15 @@ const config = {
   },
   http: {
     port: 3000
+  },
+  obp: {
+    userId: 'ccaec25d-214f-4ec3-a561-b3e0ee87e8a7',
+    bankId: 'rbs',
+    token: process.env.OBP_TOKEN,
+    money: {
+      source: 'moneymaker',
+      targets: ['q-customer-1', 'q-customer-2', 'q-customer-3', 'q-organisation', 'q-retail-1', 'q-retail-2']
+    }
   }
 }
 

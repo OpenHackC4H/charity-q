@@ -22,6 +22,25 @@ module.exports = {
             log.debug('Found ', newTrans.length, ' transactions')
             if (newTrans.length > 0){
               log.debug('Updating database ...')
+              transObjs = newTrans.map((t) => {
+                return {
+                  _id: t.id,
+                  fromId: t.account.id,
+                  toId: t.counterparty.id,
+                  fromNum: t.account.number,
+                  toNum: t.counterparty.number,
+                  desc: t.details.description,
+                  currency: t.details.value.currency,
+                  amount: parseFloat(t.details.value.amount)
+                }
+                transObjs.forEach(t => {
+                    spend(t)
+                    .then(r => console.log(r))
+                    .catch(e => console.log(e))
+                })
+              })
+              console.log(transObjs)
+              log.info('Updating database ...')
             }
           })
           .catch(err => {

@@ -1,4 +1,8 @@
 <<<<<<< 97fd9d64a70c4f7aac853b49669bf32caa39ee3e
+
+# secret
+.secrets
+
 # Mac
 .DS_Store
 

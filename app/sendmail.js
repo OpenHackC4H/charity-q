@@ -11,7 +11,7 @@ const send = opts => {
     })
     const mailOpt = {
       from: '"CharityQ" <charityq@app.org>',
-      to: 'robert.barlin@gmail.com',
+      to: opts.mail,
       subject: 'You\'ve just helped us out! - Untitled Charity Org',
       text: '',
       html: `

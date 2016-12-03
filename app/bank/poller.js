@@ -33,7 +33,6 @@ const opt = {
 
 const sendMail = (mailObj) => {
   mail.send(mailObj, (r) => {
-    log.info(r)
   })
 }
 
@@ -49,8 +48,10 @@ const handleSpendId = (t, id) => {
         foundTags = {}
       }
 
+      console.log(id)
       sendMail({
-          tags: foundTags.value || []
+          tags: foundTags.value || [],
+          mail: id
       })
     })
     .catch(e => {
@@ -60,7 +61,8 @@ const handleSpendId = (t, id) => {
 }
 
 const handleSpentIds = (t, ids) => {
-  ids.forEach(id => handleSpendId(t, id))
+  console.log(ids)
+  ids.forEach(id => handleSpendId(t, id.email))
 }
 
 module.exports = {

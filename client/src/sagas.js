@@ -13,9 +13,7 @@ export function fetchApi(url) {
 }
 
 export function* fetchQueue() {
-  console.log('fetching')
   try {
-    console.log('trying')
     const queue = yield call(fetchApi, 'donation/queue')
     console.log(queue)
     yield put(actions.fetchQueueDone(queue))

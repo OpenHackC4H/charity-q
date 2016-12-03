@@ -1,5 +1,5 @@
 const random = n => Math.floor(Math.random() * n)
-const patterns = [0, 0, 0, 1, 2, 3]
+const patterns = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 3, 4]
 
 const donations = (n, state) => {
   return new Array(n)

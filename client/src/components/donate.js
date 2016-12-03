@@ -8,7 +8,7 @@ export default class Donate extends Component {
     this.state = {
       pimping: false,
       activePattern: 0,
-      totalPatterns: 3
+      totalPatterns: 4
     }
   }
 

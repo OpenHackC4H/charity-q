@@ -10,6 +10,7 @@ export default class Donation extends Component {
     if(id === 1) return <div style={{...patternStyle, backgroundImage: 'url("assets/patterns&badges/oh_-06.png")'}}></div>
     if(id === 2) return <div style={{...patternStyle, backgroundImage: 'url("assets/patterns&badges/oh_-07.png")'}}></div>
     if(id === 3) return <div style={{...patternStyle, backgroundImage: 'url("assets/patterns&badges/oh_-08.png")'}}></div>
+    if(id === 4) return <div style={{...patternStyle, backgroundImage: 'url("assets/patterns&badges/oh_-06.svg")'}}></div>
   }
 
   render(){

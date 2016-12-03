@@ -1,3 +1,4 @@
+const log = require('winston')
 const db = require('./db').db
 
 const insert = (doc, id) => {
@@ -11,6 +12,7 @@ const insert = (doc, id) => {
 
 const view = (design, name, params = {}) => (
   new Promise((resolve, reject) => {
+    log.debug('[view]: %s - %j', name, params)
     db.view(design, name, params, (err, body) => {
       if(err) return reject(err)
       resolve(body)

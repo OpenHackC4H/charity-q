@@ -1,3 +1,5 @@
+const random = n => Math.floor(Math.random() * n)
+
 const donations = (n, state) => {
   return new Array(n)
   .fill()
@@ -5,8 +7,8 @@ const donations = (n, state) => {
     _id: `donation_${state}_${i}`,
     type: 'donation',
     state,
-    amount: Math.round(Math.random() * 1000), // 0 - 1000
-    time: Date.now(),
+    amount: random(1000), // 0 - 1000
+    time: Date.now() - random(120000),
     email: `fname.lname${i}@email.com`
   }))
 }
@@ -17,8 +19,8 @@ const spending = (donations, id) => {
   return {
     _id: `spending_${id}`,
     type: 'spending',
-    time: Date.now(),
-    receiver: `Rec-${Math.round((Math.random() * 999) + 1000)}`, // 1000 - 1999
+    time: Date.now() - random(120000),
+    receiver: `Rec-${random(999) + 1000}`, // 1000 - 1999
     donations: donation_ids,
     amount,
   }

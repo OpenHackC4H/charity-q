@@ -6,6 +6,10 @@ export default class Donation extends Component {
   }
 
   render(){
-    return <div onClick={this.props.onClick} style={this.props.donationStyle}></div>
+    return (
+      <div onClick={this.props.onClick} style={this.props.donationStyle}>
+        { this.props.pattern ? this.props.pattern : null}
+      </div>
+    )
   }
 }

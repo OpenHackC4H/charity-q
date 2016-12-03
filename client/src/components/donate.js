@@ -6,7 +6,9 @@ export default class Donate extends Component {
   constructor(props){
     super(props)
     this.state = {
-      pimping: false
+      pimping: false,
+      activePattern: 0,
+      totalPatterns: 3
     }
   }
 
@@ -34,6 +36,29 @@ export default class Donate extends Component {
         <input style={input} type='text' placeholder={placeholder}/>
       </div>
     )
+  }
+
+  onLeftClick(){
+    if (this.state.activePattern<=0){
+      this.setState({activePattern: this.state.totalPatterns})
+    } else {
+      this.setState({activePattern: this.state.activePattern-1})
+    }
+  }
+
+  onRightClick(){
+    if (this.state.activePattern>=this.state.totalPatterns){
+      this.setState({activePattern: 0})
+    } else {
+      this.setState({activePattern: this.state.activePattern+1})
+    }
+  }
+
+  getPattern(id, patternStyle){
+    if(id === 0) return null
+    if(id === 1) return <div style={{...patternStyle, backgroundImage: 'url("assets/patterns&badges/oh_-06.png")'}}></div>
+    if(id === 2) return <div style={{...patternStyle, backgroundImage: 'url("assets/patterns&badges/oh_-07.png")'}}></div>
+    if(id === 3) return <div style={{...patternStyle, backgroundImage: 'url("assets/patterns&badges/oh_-08.png")'}}></div>
   }
   
   render(){
@@ -66,13 +91,20 @@ export default class Donate extends Component {
     const column = {
       width: '250px'
     }
-
+    const donationWidth = '100px'
     const donationStyle = {
       backgroundColor: 'rgb(160, 167, 201)',
       height: '40px',
-      width: '100px',
+      width: donationWidth,
       borderBottom: '4px solid rgb(204, 226, 255)',
       margin: '20px'
+    }
+
+    const patternStyle = {
+      height: '40px',
+      width: donationWidth,
+      backgroundSize: '100%',
+      backgroundRepeat: 'repeat-y'
     }
 
     return(
@@ -96,11 +128,11 @@ export default class Donate extends Component {
               <div style={disclaimer}>Your donation has entitled you to choose a custom style for your donation</div>
               
               <div style={{display: 'flex', justifyContent:'space-between', alignItems: 'center' }}>
-                <div style={{...styles.button, height: '30px', padding: '0 10px'}}>
+                <div onClick={this.onLeftClick.bind(this)} style={{...styles.button, height: '30px', padding: '0 10px'}}>
                   Left
                 </div> 
-                <Donation donationStyle={donationStyle} />
-                <div style={{...styles.button, height: '30px', padding: '0 10px'}}>
+                <Donation pattern={this.getPattern(this.state.activePattern, patternStyle)}donationStyle={donationStyle} />
+                <div onClick={this.onRightClick.bind(this)} style={{...styles.button, height: '30px', padding: '0 10px'}}>
                   Right
                 </div> 
               </div>

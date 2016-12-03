@@ -10,6 +10,7 @@ const app = express()
 app.use(bodyParser.json())
 app.use(allowCors)
 app.use('/donation', require('./routes/donation'))
+app.use('/recipient', require('./routes/recipient'))
 app.use('/', fileServer)
 
 const listen = () => {

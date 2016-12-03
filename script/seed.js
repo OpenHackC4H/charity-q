@@ -26,7 +26,17 @@ const spending = (donations, id) => {
   }
 }
 
+const recipients = [
+  {
+    type: 'recipient',
+    _id: 'q-customer-2',
+    account: 'q-customer-2',
+    tags: ['mosquito nets', 'accountants']
+  }
+]
+
 module.exports = {
   donations,
-  spending
+  spending,
+  recipients
 }

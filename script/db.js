@@ -56,8 +56,9 @@ const loadData = () => {
   const inQueue = seed.donations(10, 'in_queue')
   const spent = seed.donations(5, 'spent')
   const spending = seed.spending(spent, 'stuff')
+  const recipients = seed.recipients
 
-  const docs = inQueue.concat(spent).concat(spending)
+  const docs = inQueue.concat(spent).concat(spending).concat(recipients)
 
   return new Promise(resolve => {
     db.bulk({ docs }, (err) => {

@@ -24,6 +24,13 @@ module.exports = {
           emit(doc.time, doc._id)
         }
       }
+    },
+    tags: {
+      map: function(doc) {
+        if (doc.type === 'recipient') {
+          emit(doc.account, doc.tags)
+        }
+      }
     }
   }
 }

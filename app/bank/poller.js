@@ -29,6 +29,18 @@ const opt = {
   expenses: false
 }
 
+const sendMain = (mailObj) => {
+
+}
+
+const handleSpendId = (id) => {
+
+}
+
+const handleSpentIds = (ids) => {
+
+}
+
 module.exports = {
     poll: () => {
       setInterval(() => {
@@ -42,9 +54,9 @@ module.exports = {
                 return {
                   _id: t.id,
                   fromId: t.account.id,
-                  toId: t.counterparty.id,
+                  recipientId: t.counterparty.id,
                   fromNum: t.account.number,
-                  toNum: t.counterparty.number,
+                  recipientNum: t.counterparty.number,
                   desc: t.details.description,
                   currency: t.details.value.currency,
                   amount: parseFloat(t.details.value.amount)
@@ -52,7 +64,10 @@ module.exports = {
               })
               transObjs.forEach(t => {
                   spend(t)
-                  .then(r => log.info(r))
+                  .then(r => {
+                    log.info(r)
+                    log.info('handle spent ids')
+                  })
                   .catch(e => log.info(e))
               })
             }

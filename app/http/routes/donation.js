@@ -13,7 +13,7 @@ const queue = (req, res, next) => {
   })
 }
 
-const create = (req, res) => {
+const create = (req, res, next) => {
   donation.create(req.body)
   .then(result => {
     res.end()

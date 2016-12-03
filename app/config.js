@@ -7,6 +7,9 @@ const config = {
   http: {
     port: 3000
   },
+  business: {
+    adminFee: 0.15
+  },
   obp: {
     active: process.env.OBP_ACTIVE,
     userId: 'ccaec25d-214f-4ec3-a561-b3e0ee87e8a7',

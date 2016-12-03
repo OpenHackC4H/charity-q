@@ -1,5 +1,6 @@
 const express = require('express')
 const donation = require('../../database/donation')
+const donate = require('../../service/donate')
 
 const router = express.Router()
 
@@ -14,7 +15,7 @@ const queue = (req, res, next) => {
 }
 
 const create = (req, res, next) => {
-  donation.create(req.body)
+  donate(req.body)
   .then(() => {
     res.end()
   })

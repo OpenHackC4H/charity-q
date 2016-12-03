@@ -22,7 +22,7 @@ module.exports = (s) => {
   const amount = s.amount
   let spent_ids
 
-  return donation.queueFull()
+  return donation.queue()
   .then(queued => {
     const spent = covered(queued, [], amount)
     .map(el => {

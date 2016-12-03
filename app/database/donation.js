@@ -8,13 +8,6 @@ const create = data => {
 
 const queue = () => {
   return db.view('views', 'queue')
-  .then(result => result.rows.map(el => ({
-    amount: el.value.amount
-  })))
-}
-
-const queueFull = () => {
-  return db.view('views', 'queue')
   .then(result => result.rows.map(el => el.value))
 }
 
@@ -52,7 +45,6 @@ const spent = (from, to) => {
 module.exports = {
   create,
   queue,
-  queueFull,
   leaderboard,
   sum,
   spent

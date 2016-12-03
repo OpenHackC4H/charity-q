@@ -5,7 +5,7 @@ const donate = require('../../service/donate')
 const router = express.Router()
 
 const queue = (req, res, next) => {
-  donation.queueFull()
+  donation.queue()
   .then(result => {
     res.json(result)
   })

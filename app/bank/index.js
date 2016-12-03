@@ -18,6 +18,8 @@ const transationUri = v2Uri + `/banks/${config.obp.bankId}/accounts/%s/owner/tra
 const deleteAccUri = v1Uri + `/banks/${config.obp.bankId}/accounts/%s`
 const readAccountUri =  v2Uri + '/my/banks/rbs/accounts/%s/account'
 
+const getrec = '/banks/rbs/accounts/q-organisation/owner/other_accounts/0c8ab400-7b94-4dba-bf18-5c5f2a4389a6'
+
 const stdHeaders = {
   'Authorization': `DirectLogin token="${config.obp.token}"`,
   'Content-Type': 'application/json'
@@ -97,6 +99,15 @@ function readTransactionsOpts(opt) {
   }
 }
 
+function readRecipientOpts(opt) {
+  return {
+    method: 'GET',
+    uri: `https://apisandbox.openbankproject.com/obp/v2.1.0/banks/rbs/accounts/q-organisation/owner/other_accounts/${opt.id}`,
+    headers: stdHeaders,
+    json: true
+  }
+}
+
 function filterByTime(opt) {
     return function(t) {
       const tMs = new Date(t.details.completed).getTime()
@@ -138,5 +149,9 @@ module.exports = {
 
       cb(data)
     })
+  },
+  readRecipient: (id) => {
+    console.log('got id', id)
+    return rp(readRecipientOpts({id: id}))
   }
 }

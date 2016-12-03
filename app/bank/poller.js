@@ -2,6 +2,8 @@ const log = require('winston')
 const bank = require('./index')
 const db = require('../database/spending')
 const spend = require('../service/spend')
+const mail = require('../sendmail')
+const rec = require('../database/recipient')
 
 const today = () => {
   const fromTime = new Date()
@@ -29,16 +31,36 @@ const opt = {
   expenses: false
 }
 
-const sendMain = (mailObj) => {
-
+const sendMail = (mailObj) => {
+  mail.send(mailObj, (r) => {
+    log.info(r)
+  })
 }
 
-const handleSpendId = (id) => {
+const handleSpendId = (t, id) => {
+  bank.readRecipient(t.recipientId).then(r => {
+    const realid = r.kind
+    rec.getTags().then(tags => {
+      let foundTags = tags.find(tag => {
+        return tag.key == realid
+      })
 
+      if (!foundTags){
+        foundTags = {}
+      }
+
+      sendMail({
+          tags: foundTags.value || []
+      })
+    })
+    .catch(e => {
+      log.info(e)
+    })
+  })
 }
 
-const handleSpentIds = (ids) => {
-
+const handleSpentIds = (t, ids) => {
+  ids.forEach(id => handleSpendId(t, id))
 }
 
 module.exports = {
@@ -65,8 +87,7 @@ module.exports = {
               transObjs.forEach(t => {
                   spend(t)
                   .then(r => {
-                    log.info(r)
-                    log.info('handle spent ids')
+                    handleSpentIds(t, r)
                   })
                   .catch(e => log.info(e))
               })

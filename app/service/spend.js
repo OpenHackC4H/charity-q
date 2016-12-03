@@ -19,6 +19,7 @@ const covered = (queued, spent, amount) => {
 
 module.exports = (s) => {
   log.debug('Spending detected')
+  console.log(s)
   const amount = s.amount
   let spent_ids
 

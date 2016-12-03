@@ -25,6 +25,13 @@ module.exports = {
         }
       }
     },
+    spendings: {
+      map: function(doc) {
+        if (doc.type === 'spending') {
+          emit(doc.receiver, doc)
+        }
+      }
+    },
     tags: {
       map: function(doc) {
         if (doc.type === 'recipient') {

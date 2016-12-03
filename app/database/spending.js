@@ -5,6 +5,18 @@ const create = data => {
   return db.insert(data)
 }
 
+const read = () => {
+  return db.view('views', 'spendings')
+  .then(result => result.rows.map(el => el.value))
+}
+
+const readIds = () => {
+  return db.view('views', 'spendings')
+  .then(result => result.rows.map(el => el.value._id))
+}
+
 module.exports = {
-  create
+  create,
+  read,
+  readIds
 }

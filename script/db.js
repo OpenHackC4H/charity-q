@@ -35,16 +35,18 @@ const updateViews = () => {
 const deleteData = () => {
   log.info('Deleting data...')
 
-  db.list((err, body) => {
-    if(err) return log.error(err.message)
-    const docs = body.rows
-    .filter(doc => !doc.id.includes('_design'))
-    .map(doc => ({
-      _id: doc.id,
-      _rev: doc.value.rev,
-      _deleted: true
-    }))
-    db.bulk({ docs })
+  return new Promise(resolve => {
+    db.list((err, body) => {
+      if(err) return log.error(err.message)
+        const docs = body.rows
+      .filter(doc => !doc.id.includes('_design'))
+      .map(doc => ({
+        _id: doc.id,
+        _rev: doc.value.rev,
+        _deleted: true
+      }))
+      db.bulk({ docs }, resolve)
+    })
   })
 }
 
@@ -53,10 +55,15 @@ const loadData = () => {
 
   const inQueue = seed.donations(10, 'in_queue')
   const spent = seed.donations(5, 'spent')
+  const spending = seed.spending(spent, 'stuff')
 
-  const docs = inQueue.concat(spent)
-  db.bulk({ docs }, (err) => {
-    if(err) log.error(err.message)
+  const docs = inQueue.concat(spent).concat(spending)
+
+  return new Promise(resolve => {
+    db.bulk({ docs }, (err) => {
+      if(err) return log.error(err.message)
+      resolve()
+    })
   })
 }
 
@@ -72,8 +79,10 @@ switch (command) {
   case 's':
     return loadData()
   case 'r':
-    deleteData()
-    loadData()
+    deleteData().
+    then(() => {
+      loadData()
+    })
     return
   case 'd':
     return deleteData()

@@ -47,8 +47,9 @@ export function removeTag(account, tag) {
   }
 }
 
-export function setActiveDonation() {
+export function setActiveDonation(id) {
   return {
-    type: SET_ACTIVE_DONATION
+    type: SET_ACTIVE_DONATION,
+    id
   }
 }

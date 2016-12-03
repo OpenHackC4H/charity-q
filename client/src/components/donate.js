@@ -70,6 +70,7 @@ export default class Donate extends Component {
     const donationStyle = {
       backgroundColor: 'rgb(160, 167, 201)',
       height: '40px',
+      width: '100px',
       borderBottom: '4px solid rgb(204, 226, 255)',
       margin: '20px'
     }
@@ -92,8 +93,18 @@ export default class Donate extends Component {
          { this.state.pimping && (
            <div>
               <div style={title}>Style It!</div>
-              <div style={disclaimer}>Your donation has entitled you to choose 1 custom style for your donation</div>
-              <Donation donationStyle={donationStyle} />
+              <div style={disclaimer}>Your donation has entitled you to choose a custom style for your donation</div>
+              
+              <div style={{display: 'flex', justifyContent:'space-between', alignItems: 'center' }}>
+                <div style={{...styles.button, height: '30px', padding: '0 10px'}}>
+                  Left
+                </div> 
+                <Donation donationStyle={donationStyle} />
+                <div style={{...styles.button, height: '30px', padding: '0 10px'}}>
+                  Right
+                </div> 
+              </div>
+              
               <div style={{...styles.button, marginTop: '10px'}}>Donate</div> 
            </div>
          )}

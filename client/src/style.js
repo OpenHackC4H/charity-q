@@ -24,7 +24,7 @@ export const button = {
   backgroundColor: 'rgb(52, 75, 168)',
   borderRadius: '5px',
   color: 'white',
-  padding: '8px 0px',
+  padding: '8px 10px',
   textAlign: 'center',
   cursor: 'pointer'
 }

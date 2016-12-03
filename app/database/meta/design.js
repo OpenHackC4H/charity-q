@@ -3,7 +3,7 @@ module.exports = {
   views: {
     queue: {
       map: function(doc) {
-        if (doc.type === 'donation') {
+        if (doc.type === 'donation' && doc.state === 'in_queue') {
           emit(doc.email, doc.amount)
         }
       }

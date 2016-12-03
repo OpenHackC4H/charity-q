@@ -8,7 +8,8 @@ const initialState = {
     { id: 4, amount: 100 }
   ],
   totalAmount: 360,
-  activeDonation: ''
+  activeDonation: '',
+  accounts: []
 }
 
 export default function reducer(state = initialState, action) {

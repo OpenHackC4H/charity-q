@@ -8,13 +8,7 @@ const create = data => {
 
 const queue = () => {
   return db.view('views', 'queue')
-  .then(result => {
-    return result.rows
-    .map(el => ({
-      email: el.key,
-      amount: el.value
-    }))
-  })
+  .then(result => result.rows.map(el => el.value))
 }
 
 const sum = (state) => {

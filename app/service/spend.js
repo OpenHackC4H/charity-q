@@ -1,3 +1,4 @@
+const log = require('winston')
 const donation = require('../database/donation')
 const spending = require('../database/spending')
 const db = require('../database')
@@ -17,6 +18,7 @@ const covered = (queued, spent, amount) => {
 }
 
 module.exports = (s) => {
+  log.debug('Spending detected')
   const amount = s.amount
   let spent_ids
 

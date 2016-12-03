@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import * as styles from '../style'
 import Queue from './queue'
+import Statistics from './statistics'
 
 export default class Organization extends Component {
   render(){
@@ -10,14 +11,11 @@ export default class Organization extends Component {
       height: '100px'
     }
     return(
-      <div>
+      <div style={styles.mainBackground}>
         <p style={{...styles.text.header, textAlign: 'center'}}>SIDA</p>
         <div style={{display: 'flex', justifyContent: 'space-around'}}>
           <Queue />
-          <div style={totalDonations}>
-            <p>Total Donations in Queue</p>
-            <p>265 700 SEK</p>
-          </div>
+          <Statistics />
         </div>
       </div>
     )

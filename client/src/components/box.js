@@ -5,14 +5,13 @@ export default class Box extends Component {
     const title = {
       color: this.props.titleColor || 'white',
       fontSize: '50px',
-      fontWeight: '900',
-      textAlign: 'center'
+      fontWeight: '900'
     }
 
     const backgroundColor = this.props.backgroundColor || 'rgba(0,0,0,.4)'
     const background = {
       width: 250,
-      height: 400,
+      height: this.props.height || 400,
       boxShadow: `inset 0 0 0 1000px ${backgroundColor}`,
       fontWeight: '600',
       marginTop: '-10px'

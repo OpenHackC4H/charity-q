@@ -1,9 +1,12 @@
 import React, { Component } from 'react'
+import Box from './box'
 
 export default class Donate extends Component {
   render(){
     return(
-      <p>Q</p>
+      <Box title={'Donate'}>
+        
+      </Box>
     )
   }
 }

@@ -59,13 +59,13 @@ module.exports = {
                   recipientNum: t.counterparty.number,
                   desc: t.details.description,
                   currency: t.details.value.currency,
-                  amount: parseFloat(t.details.value.amount)
+                  amount: Math.abs(parseFloat(t.details.value.amount))
                 }
               })
               transObjs.forEach(t => {
                   spend(t)
                   .then(r => {
-                    log.info(r)
+                    console.log(r)
                     log.info('handle spent ids')
                   })
                   .catch(e => log.info(e))

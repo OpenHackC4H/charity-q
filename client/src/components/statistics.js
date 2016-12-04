@@ -27,9 +27,9 @@ export class Statistics extends Component {
     return(
       <Box title={'Statistics'} width={300}>
         <div id='top-box' style={box}>
-          { this.renderRow('Total value', '100€') }
-          { this.renderRow('Donors', '100€') }
-          { this.renderRow('Avg donation', '100€') }
+          { this.renderRow('Total value', '€'+this.props.totalAmount) }
+          { this.renderRow('Donors', this.props.totalDonors) }
+          { this.renderRow('Avg donation', '€'+this.props.avgDonation) }
         </div>
         <p style={{color: 'white', padding: '0px 25px', fontSize: '20px'}}>Top donations</p>
         <div style={{...box, paddingTop: '2px'}}>
@@ -45,7 +45,10 @@ export class Statistics extends Component {
 const mapStateToProps = state => {
   console.log(state)
   return {
-    leaderboard: state.leaderboard
+    leaderboard: state.leaderboard,
+    totalAmount: state.totalAmount,
+    totalDonors: state.queue.length,
+    avgDonation: Math.round(state.totalAmount / state.queue.length || 1)
   }
 }
 

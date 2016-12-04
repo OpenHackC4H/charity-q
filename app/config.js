@@ -9,7 +9,7 @@ const config = {
   },
   business: {
     adminFee: 0.15,
-    maxDonation: 500,
+    maxDonation: 50,
     minDonation: 1
   },
   obp: {

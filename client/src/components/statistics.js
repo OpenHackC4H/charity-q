@@ -31,7 +31,7 @@ export class Statistics extends Component {
           { this.renderRow('Donors', this.props.totalDonors) }
           { this.renderRow('Avg donation', '€'+this.props.avgDonation) }
         </div>
-        <p style={{color: 'white', padding: '0px 25px', fontSize: '20px'}}>Top donations</p>
+        <p style={{color: 'white', padding: '0px 25px', fontSize: '20px'}}>Top donors</p>
         <div style={{...box, paddingTop: '2px'}}>
           { this.props.leaderboard.map(l => {
             return this.renderRow(l.key, l.value)

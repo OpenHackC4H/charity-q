@@ -7,7 +7,6 @@ log.level = config.logLevel
 
 server.listen().then(log.info)
 .then(() => {
-  if(config.obp.active) poller.poll()
   log.info('App is running')
 })
 .catch(err => {

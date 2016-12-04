@@ -14,6 +14,7 @@ app.use('/recipient', require('./routes/recipient'))
 app.use('/bank', require('./routes/bank'))
 app.use('/recipient', require('./routes/recipient'))
 app.use('/spending', require('./routes/spending'))
+app.use('/poll', require('./routes/poll'))
 app.use('/', fileServer)
 
 const listen = () => {

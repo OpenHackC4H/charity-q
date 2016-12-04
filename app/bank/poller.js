@@ -16,12 +16,12 @@ const today = () => {
 }
 
 function filterHandledTransactions(handledTrans) {
-    return function(t) {
-        const found = handledTrans.find((ht) => {
-          return t.id == ht
-        })
-        return found == undefined
-    }
+  return function(t) {
+    const found = handledTrans.find((ht) => {
+      return t.id == ht
+    })
+    return found == undefined
+  }
 }
 
 const opt = {
@@ -50,8 +50,8 @@ const handleSpendId = (t, id) => {
 
       console.log(id)
       sendMail({
-          tags: foundTags.value || [],
-          mail: id
+        tags: foundTags.value || [],
+        mail: id
       })
     })
     .catch(e => {
@@ -66,39 +66,37 @@ const handleSpentIds = (t, ids) => {
 }
 
 module.exports = {
-    poll: () => {
-      setInterval(() => {
-        bank.readTransactions(opt, (data) => {
-          db.readIds()
-          .then(result => {
-            const newTrans = data.filter(filterHandledTransactions(result))
+  poll: () => {
+    bank.readTransactions(opt, (data) => {
+      db.readIds()
+      .then(result => {
+        const newTrans = data.filter(filterHandledTransactions(result))
 
-            if (newTrans.length > 0){
-              transObjs = newTrans.map((t) => {
-                return {
-                  _id: t.id,
-                  fromId: t.account.id,
-                  recipientId: t.counterparty.id,
-                  fromNum: t.account.number,
-                  recipientNum: t.counterparty.number,
-                  desc: t.details.description,
-                  currency: t.details.value.currency,
-                  amount: Math.abs(parseFloat(t.details.value.amount))
-                }
-              })
-              transObjs.forEach(t => {
-                  spend(t)
-                  .then(r => {
-                    handleSpentIds(t, r)
-                  })
-                  .catch(e => log.info(e))
-              })
+        if (newTrans.length > 0){
+          transObjs = newTrans.map((t) => {
+            return {
+              _id: t.id,
+              fromId: t.account.id,
+              recipientId: t.counterparty.id,
+              fromNum: t.account.number,
+              recipientNum: t.counterparty.number,
+              desc: t.details.description,
+              currency: t.details.value.currency,
+              amount: Math.abs(parseFloat(t.details.value.amount))
             }
           })
-          .catch(err => {
-            log.error(err)
+          transObjs.forEach(t => {
+            spend(t)
+            .then(r => {
+              handleSpentIds(t, r)
+            })
+            .catch(e => log.info(e))
           })
-        })
-      }, opt.interval)
-    }
+        }
+      })
+      .catch(err => {
+        log.error(err)
+      })
+    })
+  }
 }

@@ -3,17 +3,22 @@ const donation = require('../database/donation')
 const spending = require('../database/spending')
 const db = require('../database')
 
+const eaten = (sa, da) => (da - sa) < (da / 2)
+
 const covered = (queued, spent, amount) => {
   if(!queued.length) {
     const error = new Error()
     error.name = 'overspending'
     throw error
   }
-  if(amount <= 0) return spent
-
   const [head, ...tail] = queued
-  const s = spent.concat(head)
+  const oom = amount <= 0
+  const eat = eaten(amount, head.amount)
+  log.debug('eat:', eat)
+  if(oom || !eat) return spent
+
   const a = amount - head.amount
+  const s = spent.concat(head)
   return covered(tail, s, a)
 }
 

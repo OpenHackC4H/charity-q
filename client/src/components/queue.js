@@ -31,7 +31,7 @@ export class Queue extends Component {
 
     height = donation.amount / totalAmount
     height = height * queueHeight
-    height = height - borderHeight
+    height = Math.max(height - borderHeight, 1)
 
     const donationStyle = {
       backgroundColor,

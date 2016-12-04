@@ -55,8 +55,8 @@ export class Admin extends Component {
     }
     return (
       <div style={rowStyle}>
-        <input style={input} type='text' placeholder={'Tag name'}/>
-        <div style={styles.button} onClick={() => this.props.addTag(account, 'hard coded tag')}>{'Add'}</div>
+        <input style={input} onChange={(evt) => this.inputValue = evt.target.value} type='text' placeholder={'Tag name'}/>
+        <div style={styles.button} onClick={() => this.props.addTag(account, this.inputValue)}>{'Add'}</div>
       </div>
     )
   }

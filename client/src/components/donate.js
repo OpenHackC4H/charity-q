@@ -12,7 +12,8 @@ export class Donate extends Component {
       pimping: false,
       activePattern: 0,
       totalPatterns: 4,
-      amount: 0
+      amount: 0,
+      email: ''
     }
   }
 
@@ -24,7 +25,7 @@ export class Donate extends Component {
     const donation = {
       pattern: this.state.activePattern,
       amount: this.state.amount,
-      email: 'test@test.com'
+      email: this.state.email
     }
     this.props.insertDonation(donation)
     this.setState({pimping: false})
@@ -32,6 +33,10 @@ export class Donate extends Component {
 
   onAmountInput(event){
     this.setState({amount: parseInt(event.target.value) })
+  }
+
+  onEmailInput(event){
+    this.setState({email: event.target.value })
   }
 
   renderInput(label, placeholder, onChange){
@@ -79,7 +84,7 @@ export class Donate extends Component {
           Donate
         </p>
         <div>
-          { this.renderInput('Email', 'you@example.com', ()=>{}) }
+          { this.renderInput('Email', 'you@example.com', this.onEmailInput) }
           { this.renderInput('Amount', '€50',this.onAmountInput) }
           <div onClick={this.onDonateClick.bind(this)} style={{...styles.button, marginTop: '10px'}}>Pay with card</div> 
           <div style={disclaimer}>Untitled Charity Org will charge 15% for daily running costs</div>

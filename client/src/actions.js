@@ -1,5 +1,7 @@
 export const FETCH_QUEUE = 'FETCH_QUEUE'
 export const FETCH_QUEUE_DONE = 'FETCH_QUEUE_DONE'
+export const FETCH_LEADERBOARD = 'FETCH_LEADERBOARD'
+export const FETCH_LEADERBOARD_DONE = 'FETCH_LEADERBOARD_DONE'
 export const FETCH_ACCOUNTS = 'FETCH_ACCOUNTS'
 export const FETCH_ACCOUNTS_DONE = 'FETCH_ACCOUNTS_DONE'
 export const FETCH_TAGS = 'FETCH_TAGS'
@@ -21,6 +23,19 @@ export function fetchQueueDone(queue) {
   return {
     type: FETCH_QUEUE_DONE,
     queue
+  }
+}
+
+export function fetchLeaderboard() {
+  return {
+    type: FETCH_LEADERBOARD
+  }
+}
+
+export function fetchLeaderboardDone(leaderboard) {
+  return {
+    type: FETCH_LEADERBOARD_DONE,
+    leaderboard
   }
 }
 

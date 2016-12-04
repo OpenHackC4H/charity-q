@@ -14,7 +14,8 @@ export function* sagas() {
     takeLatest(actions.FETCH_ACCOUNTS, fetchAccounts),
     takeLatest(actions.INSERT_DONATION, insertDonation),
     takeLatest(actions.FETCH_TAGS, fetchTags),
-    takeLatest(actions.REMOVE_TAG, removeTag)
+    takeLatest(actions.REMOVE_TAG, removeTag),
+    takeLatest(actions.FETCH_LEADERBOARD, fetchLeaderboard)
   ]
 }
 
@@ -43,6 +44,16 @@ export function* fetchQueue() {
     yield put(actions.fetchQueueDone(queue))
   } catch(err) {
     console.log(err) // Error handling
+  }
+}
+
+export function* fetchLeaderboard() {
+  try {
+    const leaderboard = yield call(fetchApi, 'donation/leaderboard')
+    yield put(actions.fetchLeaderboardDone(leaderboard))
+  } catch(err) {
+    console.log(err)
+    // Error handling
   }
 }
 

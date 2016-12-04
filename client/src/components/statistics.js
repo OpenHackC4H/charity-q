@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import Box from './box'
+import { connect } from 'react-redux'
 
-export default class Statistics extends Component {
+export class Statistics extends Component {
   
   renderRow(label, value){
     const text = {
@@ -10,7 +11,7 @@ export default class Statistics extends Component {
     }
 
     return (
-      <div style={{...text, display: 'flex', justifyContent: 'space-between'}}>
+      <div key={label} style={{...text, display: 'flex', justifyContent: 'space-between'}}>
         <div>{label}</div>
         <div>{value}</div>
       </div>
@@ -24,7 +25,7 @@ export default class Statistics extends Component {
     }
 
     return(
-      <Box title={'Statistics'}>
+      <Box title={'Statistics'} width={300}>
         <div id='top-box' style={box}>
           { this.renderRow('Total value', '100€') }
           { this.renderRow('Donors', '100€') }
@@ -32,14 +33,20 @@ export default class Statistics extends Component {
         </div>
         <p style={{color: 'white', padding: '0px 25px', fontSize: '20px'}}>Top donations</p>
         <div style={{...box, paddingTop: '2px'}}>
-          { this.renderRow('Donation', '100€') }
-          { this.renderRow('Donation', '100€') }
-          { this.renderRow('Donation', '100€') }
-          { this.renderRow('Donation', '100€') }
-          { this.renderRow('Donation', '100€') }
-          { this.renderRow('Donation', '100€') }
+          { this.props.leaderboard.map(l => {
+            return this.renderRow(l.key, l.value)
+          })}
         </div>
       </Box>
     )
   }
 }
+
+const mapStateToProps = state => {
+  console.log(state)
+  return {
+    leaderboard: state.leaderboard
+  }
+}
+
+export default connect(mapStateToProps, null)(Statistics)

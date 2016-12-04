@@ -9,7 +9,8 @@ const initialState = {
   ],
   totalAmount: 360,
   activeDonation: '',
-  accounts: []
+  accounts: [],
+  leaderboard: []
 }
 
 function mergeAccountLists(untagged, tagged) {
@@ -26,6 +27,11 @@ export default function reducer(state = initialState, action) {
       return {
         ...state,
         totalAmount: action.totalAmount
+       }
+    case types.FETCH_LEADERBOARD_DONE:
+      return {
+        ...state,
+        leaderboard: action.leaderboard
        }
     case types.FETCH_QUEUE_DONE:
        return {

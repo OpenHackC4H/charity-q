@@ -26,6 +26,7 @@ const mapDispatchToProps = dispatch => {
       console.log('loading')
       dispatch(actions.fetchQueue())
       dispatch(actions.fetchTotalAmount())
+      dispatch(actions.fetchLeaderboard())
     }
   }
 }

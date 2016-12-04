@@ -12,7 +12,7 @@ export default class Box extends Component {
     const height = this.props.height || 400
 
     const background = {
-      width: 250,
+      width: this.props.width || 250,
       boxShadow: `inset 0 0 0 1000px ${backgroundColor}`,
       fontWeight: '600',
       marginTop: '-10px',

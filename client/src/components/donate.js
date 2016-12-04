@@ -24,7 +24,7 @@ export class Donate extends Component {
   }
 
   onConfirmClick() {
-    if (this.state.email.length > 5){
+    if (this.state.email.length > 5 && this.state.amount <= 50 && this.state.amount > 0){
       const donation = {
         pattern: this.state.activePattern,
         amount: this.state.amount,
@@ -62,7 +62,7 @@ export class Donate extends Component {
     return (
       <div style={rowStyle}>
         <div style={{marginRight: '10px'}}>{label}</div>
-        <input type='number' onChange={onChange.bind(this)} style={input} placeholder={placeholder} min='1' max='500'/>
+        <input type='number' onChange={onChange.bind(this)} style={input} placeholder={placeholder} min='1' max='50'/>
       </div>
     )
   }

@@ -50,7 +50,8 @@ export class Admin extends Component {
     const input = {
       padding: '10px',
       borderRadius: '5px',
-      border: 'none'
+      border: 'none',
+      width: '150px'
     }
     return (
       <div style={rowStyle}>

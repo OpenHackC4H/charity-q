@@ -14,7 +14,7 @@ export class Organization extends Component {
         <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'space-between', height: '800px'}}>
           <div style={{display: 'flex', justifyContent: 'space-around'}}>
             <Queue />
-            { this.props.activeDonation && <MyDonation />}
+            { this.props.activeDonation ? <MyDonation />:<div style={{width: 250}}></div>}
             <Statistics />
           </div>
           <div>

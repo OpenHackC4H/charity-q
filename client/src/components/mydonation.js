@@ -19,7 +19,7 @@ export class MyDonation extends Component {
       <Box title={'€' + this.props.donation.amount} titleColor={titleColor} backgroundColor={backgroundColor} overflow={true} rounded={true}>
         <div style={{overflow: 'auto'}}>
           <div style={{backgroundColor: 'rgba(0,0,0,.6)', margin: '10px', padding: '10px', color: 'white'}}>
-            Lorentz did no wrong, and nothing he did
+            { this.props.donation.email }
           </div>
         </div>
       </Box>

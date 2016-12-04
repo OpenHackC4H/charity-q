@@ -3,6 +3,7 @@ const db = require('./')
 const create = data => {
   data.type = 'donation'
   data.state = 'in_queue'
+  data.time = Date.now()
   return db.insert(data)
 }
 

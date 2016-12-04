@@ -8,7 +8,9 @@ const config = {
     port: 3000
   },
   business: {
-    adminFee: 0.15
+    adminFee: 0.15,
+    maxDonation: 500,
+    minDonation: 0
   },
   obp: {
     active: process.env.OBP_ACTIVE,

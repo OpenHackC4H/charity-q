@@ -48,11 +48,12 @@ export class Queue extends Component {
     
     //Hack to compensate for border height
     const containerHeight = queueHeight + this.props.donations.length * borderHeight
+    const totalAmount = this.props.donations.reduce((prev, curr) => prev + curr.amount, 0)
 
     return(
       <Box title={'€' + this.props.totalAmount} titleColor={'lightgray'} backgroundColor={'rgba(210,210,210,.6)'} height={containerHeight}>
         <div style={{padding: `${padding}px`}}>
-          { this.props.donations.map((d, i) => this.queueGenerator(d, i, this.props.totalAmount, queueHeight-padding*2)) }
+          { this.props.donations.map((d, i) => this.queueGenerator(d, i, totalAmount, queueHeight-padding*2)) }
         </div>
       </Box>
     )

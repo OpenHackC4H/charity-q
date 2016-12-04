@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import * as styles from '../style.js'
+import Header from './header'
 import Box from './box'
 import { connect } from 'react-redux'
 import * as actions from '../actions'
@@ -67,6 +68,7 @@ export class Admin extends Component {
     }
     return(
       <div style={{...styles.mainBackground, height: '650px'}}>
+        <Header />
         <div style={{display: 'flex', justifyContent: 'space-around', flexWrap: 'wrap'}}>
           {
             this.props.accounts.map(account => (

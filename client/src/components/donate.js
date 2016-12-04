@@ -18,7 +18,9 @@ export class Donate extends Component {
   }
 
   onDonateClick() {
-    this.setState({pimping: true })
+    if (this.state.email.length > 5 && this.state.amount > 0){
+      this.setState({pimping: true })
+    }
   }
 
   onConfirmClick() {

@@ -31,9 +31,21 @@ const spending = (donations, id) => {
 const recipients = [
   {
     type: 'recipient',
+    _id: 'q-customer-1',
+    account: 'q-customer-1',
+    tags: ['mosquito nets', 'accountants']
+  },
+  {
+    type: 'recipient',
     _id: 'q-customer-2',
     account: 'q-customer-2',
-    tags: ['mosquito nets', 'accountants']
+    tags: ['mosquito nets', 'education']
+  },
+  {
+    type: 'recipient',
+    _id: 'q-customer-3',
+    account: 'q-customer-3',
+    tags: ['micro loans', 'accountants']
   }
 ]
 

@@ -129,6 +129,7 @@ export function* removeTag(action) {
       })
     }
     const accounts = yield call(insertApi, 'recipient/tag', options)
+    yield put(actions.fetchTags())
   } catch(err) {
     console.log(err)
   }
@@ -147,6 +148,7 @@ export function* addTag(action) {
       })
     }
     const accounts = yield call(insertApi, 'recipient/tag', options)
+    yield put(actions.fetchTags())
   } catch(err) {
     console.log(err)
   }

@@ -39,7 +39,31 @@ export class Donate extends Component {
     this.setState({email: event.target.value })
   }
 
-  renderInput(label, placeholder, onChange){
+  renderInputAmount(label, placeholder, onChange){
+    const rowStyle = {
+      display: 'flex',
+      justifyContent: 'space-between',
+      padding: '10px 10px',
+      color: 'lightgray',
+      alignItems: 'center'
+    }
+
+    const input = {
+      padding: '10px',
+      borderRadius: '5px',
+      border: 'none',
+      width: '64%',
+    }
+
+    return (
+      <div style={rowStyle}>
+        <div style={{marginRight: '10px'}}>{label}</div>
+        <input type='number' onChange={onChange.bind(this)} style={input} placeholder={placeholder} min='1' max='500'/>
+      </div>
+    )
+  }
+
+  renderInputEmail(label, placeholder, onChange){
     const rowStyle = {
       display: 'flex',
       justifyContent: 'space-between',
@@ -56,7 +80,7 @@ export class Donate extends Component {
     return (
       <div style={rowStyle}>
         <div style={{marginRight: '10px'}}>{label}</div>
-        <input onChange={onChange.bind(this)} style={input} placeholder={placeholder}/>
+        <input onChange={onChange.bind(this)} style={input} placeholder={placeholder} />
       </div>
     )
   }
@@ -84,16 +108,16 @@ export class Donate extends Component {
           Donate
         </p>
         <div>
-          { this.renderInput('Email', 'you@example.com', this.onEmailInput) }
-          { this.renderInput('Amount', '€50',this.onAmountInput) }
-          <div onClick={this.onDonateClick.bind(this)} style={{...styles.button, marginTop: '10px'}}>Pay with card</div> 
+          { this.renderInputEmail('Email', 'you@example.com', this.onEmailInput) }
+          { this.renderInputAmount('Amount', '€50',this.onAmountInput) }
+          <div onClick={this.onDonateClick.bind(this)} style={{...styles.button, marginTop: '10px'}}>Pay with card</div>
           <div style={disclaimer}>Untitled Charity Org will charge 15% for daily running costs</div>
-          <div style={link}>Read More</div>   
+          <div style={link}>Read More</div>
         </div>
       </div>
     )
   }
-  
+
   render(){
     const background = {
       backgroundColor: 'rgb(36,36,36)',
@@ -107,7 +131,7 @@ export class Donate extends Component {
     }
 
     const disclaimer = {
-      fontFamily: 'Times', 
+      fontFamily: 'Times',
       fontSize: '8pt',
       color: 'lightgray',
       marginTop: '10px'
@@ -119,7 +143,7 @@ export class Donate extends Component {
       textDecoration: 'underline',
       margin: '0',
       cursor: 'pointer'
-    } 
+    }
 
     const column = {
       width: '250px'
@@ -146,14 +170,14 @@ export class Donate extends Component {
               <div style={{display: 'flex', justifyContent:'space-between', alignItems: 'center' }}>
                 <div onClick={this.onLeftClick.bind(this)} style={{...styles.button, height: '30px', padding: '0 10px'}}>
                   Left
-                </div> 
+                </div>
                 <Donation amount={this.state.amount} pattern={this.state.activePattern} donationStyle={donationStyle} />
                 <div onClick={this.onRightClick.bind(this)} style={{...styles.button, height: '30px', padding: '0 10px'}}>
                   Right
-                </div> 
+                </div>
               </div>
-              
-              <div onClick={this.onConfirmClick.bind(this)} style={{...styles.button, marginTop: '10px'}}>Confirm</div> 
+
+              <div onClick={this.onConfirmClick.bind(this)} style={{...styles.button, marginTop: '10px'}}>Confirm</div>
            </div>
          )}
          { /* this.props.intertingDonation && <i style={{fontSize: '48px'}} class="fa fa-spinner fa-spin" aria-hidden="true"></i> */ }

@@ -22,13 +22,15 @@ export class Donate extends Component {
   }
 
   onConfirmClick() {
-    const donation = {
-      pattern: this.state.activePattern,
-      amount: this.state.amount,
-      email: this.state.email
+    if (this.state.email.length > 5){
+      const donation = {
+        pattern: this.state.activePattern,
+        amount: this.state.amount,
+        email: this.state.email
+      }
+      this.props.insertDonation(donation)
+      this.setState({pimping: false})
     }
-    this.props.insertDonation(donation)
-    this.setState({pimping: false})
   }
 
   onAmountInput(event){

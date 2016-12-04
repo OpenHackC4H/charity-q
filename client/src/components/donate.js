@@ -27,6 +27,7 @@ export class Donate extends Component {
       email: 'test@test.com'
     }
     this.props.insertDonation(donation)
+    this.setState({pimping: false})
   }
 
   onAmountInput(event){
@@ -150,17 +151,18 @@ export class Donate extends Component {
               <div onClick={this.onConfirmClick.bind(this)} style={{...styles.button, marginTop: '10px'}}>Confirm</div> 
            </div>
          )}
+         { /* this.props.intertingDonation && <i style={{fontSize: '48px'}} class="fa fa-spinner fa-spin" aria-hidden="true"></i> */ }
         </div>
       </div>
     )
   }
 }
 
-// const mapStateToProps = state => {
-//   return {
-//     donation: selectors.getActiveDonation(state)
-//   }
-// }
+const mapStateToProps = state => {
+  return {
+    insertingDonation: state.insertingDonation
+  }
+}
 
 const mapDispatchToProps = dispatch => {
   return {
@@ -170,4 +172,4 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export default connect(null, mapDispatchToProps)(Donate)
+export default connect(mapStateToProps, mapDispatchToProps)(Donate)

@@ -12,6 +12,7 @@ export const SET_ACTIVE_DONATION = 'SET_ACTIVE_DONATION'
 export const FETCH_TOTAL_AMOUNT = 'FETCH_TOTAL_AMOUNT'
 export const FETCH_TOTAL_AMOUNT_DONE = 'FETCH_TOTAL_AMOUNT_DONE'
 export const INSERT_DONATION = 'INSERT_DONATION'
+export const INSERT_DONATION_DONE = 'INSERT_DONATION_DONE'
 
 export function fetchQueue() {
   return {
@@ -110,3 +111,10 @@ export function insertDonation(donation) {
     donation
   }
 }
+
+export function insertDonationDone() {
+  return {
+    type: INSERT_DONATION_DONE
+  }
+}
+

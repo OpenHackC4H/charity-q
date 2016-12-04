@@ -10,7 +10,9 @@ const initialState = {
   totalAmount: 360,
   activeDonation: '',
   accounts: [],
-  leaderboard: []
+  leaderboard: [],
+  insertingDonation: false,
+  insertDonationDone: false
 }
 
 function mergeAccountLists(untagged, tagged) {
@@ -54,6 +56,18 @@ export default function reducer(state = initialState, action) {
         accounts: mergeAccountLists(action.accounts, state.accounts)
         //accounts: mergeAccountLists(state.accounts, action.accounts)
       }
+     case types.INSERT_DONATION:
+      console.log(action) 
+        return {
+          ...state,
+          insertingDonation: true
+        }
+      case types.INSERT_DONATION_DONE: 
+        return {
+          ...state,
+          insertingDonation: false,
+          insertDonationDone: false
+        }
     default:
       return state
   }

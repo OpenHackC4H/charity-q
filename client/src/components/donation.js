@@ -28,12 +28,18 @@ export default class Donation extends Component {
   }
 
   render(){
+    let boxShadow = 'inset 0 0 0 1000px rgba(0,0,0,.0)'
+    if (this.props.mine){
+      boxShadow = 'inset 0 0 0 1000px rgba(254,228,152,.4)'
+    }
+    
     const height = this.props.donationStyle.height
     const patternStyle = {
       height: height + 'px',
       width: this.props.donationStyle.width,
       backgroundSize: '100%',
-      backgroundRepeat: 'repeat'
+      backgroundRepeat: 'repeat',
+      boxShadow
     }
     const width = this.props.donationStyle.width || 220
     return (

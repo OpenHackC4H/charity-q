@@ -19,11 +19,12 @@ export class Queue extends Component {
 
   queueGenerator (donation, i, totalAmount, queueHeight) {
     let backgroundColor, height, borderBottom
-
+    let mine = false
     if (this.props.highlightedDonations.includes(donation.email)) {
       //Highligthed donation (yours)
       backgroundColor = styles.colors.highlight
       borderBottom = `${borderHeight}px solid rgb(254, 255, 76)`
+      mine = true
     } else {
       backgroundColor = styles.colors.donation
       borderBottom = `${borderHeight}px solid rgb(204, 226, 255)`
@@ -39,7 +40,7 @@ export class Queue extends Component {
       borderBottom,
       cursor: 'pointer'
     }
-    return <Donation amount={donation.amount} pattern={donation.pattern} onClick={() => this.onDonationClick(donation._id)} donationStyle={donationStyle} key={i}/>
+    return <Donation mine={mine} amount={donation.amount} pattern={donation.pattern} onClick={() => this.onDonationClick(donation._id)} donationStyle={donationStyle} key={i}/>
   }
 
   render(){

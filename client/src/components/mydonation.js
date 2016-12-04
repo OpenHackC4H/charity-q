@@ -12,7 +12,7 @@ export class MyDonation extends Component {
       backgroundColor = styles.colors.highlight
       titleColor = styles.colors.highlight
     } else {
-      backgroundColor = 'rgba(0,0,0,.6)'
+      backgroundColor = styles.colors.donation
       titleColor = 'lightgray'
     }
     return(

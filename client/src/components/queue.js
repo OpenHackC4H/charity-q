@@ -25,7 +25,7 @@ export class Queue extends Component {
       backgroundColor = styles.colors.highlight
       borderBottom = `${borderHeight}px solid rgb(254, 255, 76)`
     } else {
-      backgroundColor = 'rgb(80, 140, 183)'
+      backgroundColor = styles.colors.donation
       borderBottom = `${borderHeight}px solid rgb(204, 226, 255)`
     }
 

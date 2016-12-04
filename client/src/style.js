@@ -1,6 +1,7 @@
 export const colors = {
   highlight: 'rgb(254, 228, 152)',
-  gray: 'rgb(36, 36, 36)'	
+  gray: 'rgb(36, 36, 36)',
+  donation: 'rgb(80, 140, 183)'
 }
 
 export const text = {

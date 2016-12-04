@@ -8,13 +8,22 @@ export default function* root(){
 }
 
 export function* sagas() {
-  console.log('setup saga')
   yield [
     takeLatest(actions.FETCH_TOTAL_AMOUNT, fetchTotalAmount),
     takeLatest(actions.FETCH_QUEUE, fetchQueue),
     takeLatest(actions.FETCH_ACCOUNTS, fetchAccounts),
-    takeLatest(actions.INSERT_DONATION, insertDonation)
+    takeLatest(actions.INSERT_DONATION, insertDonation),
+    takeLatest(actions.FETCH_TAGS, fetchTags),
+    takeLatest(actions.REMOVE_TAG, removeTag)
   ]
+}
+
+function normalizeAccountIds(accounts) {
+  accounts.forEach(account => {
+    if(account.id) account._id = account.id
+    if(!account.value) account.value = []
+  })
+  return accounts
 }
 
 export function fetchApi(url, options = {}) {
@@ -28,20 +37,16 @@ export function insertApi(url, options = {}) {
 }
 
 export function* fetchQueue() {
-  console.log('saga')
   try {
     const queue = yield call(fetchApi, 'donation/queue')
-    console.log('quuee', queue)
     
     yield put(actions.fetchQueueDone(queue))
   } catch(err) {
-    console.log(err)
-    // Error handling
+    console.log(err) // Error handling
   }
 }
 
 export function* fetchTotalAmount() {
-  console.log('saga')
   try {
     const response = yield call(fetchApi, 'donation/sum?state=in_queue')
     
@@ -53,7 +58,6 @@ export function* fetchTotalAmount() {
 }
 
 export function* fetchAccounts() {
-  console.log('fetch accounts 1')
   const options = {
     headers: {
       Authorization: 'DirectLogin token="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyIiOiIifQ.zXG9sAr_WE0hWDD3S4IsYS7_mLDCSCsF5HcfSI2m2xo"'
@@ -61,8 +65,7 @@ export function* fetchAccounts() {
   }
   try {
     const accounts = yield call(fetchApi, 'https://apisandbox.openbankproject.com/obp/v2.1.0/my/banks/rbs/accounts', options)
-    console.log('accounts:', accounts);
-    yield put(actions.fetchAccountsDone(accounts))
+    yield put(actions.fetchAccountsDone(normalizeAccountIds(accounts)))
   } catch(err) {
     console.log(err)
     // Error handling
@@ -87,5 +90,27 @@ export function* insertDonation(action){
     yield call(fetchQueue)
   } catch (error) {
     console.log('insert failed', error)
+  }
+}
+
+export function* fetchTags() {
+  try {
+    const accounts = yield call(fetchApi, 'recipient/tags')
+    //yield put(actions.fetchTagsDone(accounts))
+    yield put(actions.fetchTagsDone(normalizeAccountIds(accounts)))
+  } catch(err) {
+    console.log(err)
+  }
+}
+
+export function* removeTag(account, tag) {
+  console.log('removeTag called')
+  try {
+    const options = {
+      method: 'DELETE'
+    }
+    const accounts = yield call(fetchApi, 'recipient/tag', options)
+  } catch(err) {
+    console.log(err)
   }
 }

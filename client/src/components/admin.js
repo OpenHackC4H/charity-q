@@ -21,15 +21,15 @@ const accounts = [
 ]
 
 export class Admin extends Component {
-   renderRow(label, value){
+   renderRow(tag, account){
     const text = {
       color: 'lightgrey',
       padding: '2px 10px'
     }
     return (
       <div style={{...text, display: 'flex', justifyContent: 'space-between'}}>
-        <div>{label}</div>
-        <div>{value}</div>
+        <div>{tag}</div>
+        <div style={styles.button} onClick={this.props.removeTag(account, tag)}>X</div>
       </div>
     )
   }
@@ -69,9 +69,9 @@ export class Admin extends Component {
         <div style={{display: 'flex', justifyContent: 'space-around', flexWrap: 'wrap'}}>
           {
             this.props.accounts.map(account => (
-              <Box title={account.id} height={'200px'}>
+              <Box key={account._id} title={account._id} height={'200px'}>
                 <div style={box}>
-                  { account.values.map(tag => this.renderRow(tag, 'X')) } 
+                  { account.value.map(tag => this.renderRow(tag, account._id)) } 
                   { this.renderInput('Add', 'Tag name')}
                 </div>
               </ Box>
@@ -94,7 +94,12 @@ const mapDispatchToProps = dispatch => {
   return {
     loadInitialData: () => {
       console.log('loading')
-      dispatch(actions.fetchAccounts())
+      //dispatch(actions.fetchAccounts())
+      dispatch(actions.fetchTags())
+    },
+    removeTag: (account, tag) => {
+      console.log('remove tag dispatched')
+      dispatch(actions.removeTag(account, tag))
     }
   }
 }

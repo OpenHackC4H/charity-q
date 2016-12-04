@@ -12,6 +12,14 @@ const initialState = {
   accounts: []
 }
 
+function mergeAccountLists(untagged, tagged) {
+  const untaggedAccounts = untagged.filter(account => {
+    const matchingAccounts = tagged.filter(newAccount => newAccount._id == account._id).length
+    return matchingAccounts == 0
+  })
+  return untaggedAccounts.concat(tagged)
+}
+
 export default function reducer(state = initialState, action) {
   switch (action.type) {
     case types.FETCH_TOTAL_AMOUNT_DONE:
@@ -30,16 +38,15 @@ export default function reducer(state = initialState, action) {
         activeDonation: action.id
       }
     case types.FETCH_TAGS_DONE:
-      //TODO fix tags
       return {
         ...state,
-        accounts: action.accounts
+        accounts: mergeAccountLists(state.accounts, action.accounts)
       }
     case types.FETCH_ACCOUNTS_DONE:
-      console.log('fetch accounts done');
       return {
         ...state,
-        accounts: action.accounts
+        accounts: mergeAccountLists(action.accounts, state.accounts)
+        //accounts: mergeAccountLists(state.accounts, action.accounts)
       }
     default:
       return state

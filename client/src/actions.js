@@ -45,6 +45,7 @@ export function fetchTotalAmountDone(totalAmount) {
 }
 
 export function fetchAccountsDone(accounts) {
+  console.log('fetchAccountsDone')
   return {
     type: FETCH_ACCOUNTS_DONE,
     accounts: accounts
@@ -54,6 +55,14 @@ export function fetchAccountsDone(accounts) {
 export function fetchTags() {
   return {
     type: FETCH_TAGS
+  }
+}
+
+export function fetchTagsDone(accounts) {
+  console.log('fetchTagsDone')
+  return {
+    type: FETCH_TAGS_DONE,
+    accounts: accounts
   }
 }
 

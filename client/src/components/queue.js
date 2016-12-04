@@ -25,10 +25,10 @@ export class Queue extends Component {
       backgroundColor = styles.colors.highlight
       borderBottom = `${borderHeight}px solid rgb(254, 255, 76)`
     } else {
-      backgroundColor = 'rgb(160, 167, 201)'
+      backgroundColor = 'rgb(80, 140, 183)'
       borderBottom = `${borderHeight}px solid rgb(204, 226, 255)`
     }
-    
+
     height = donation.amount / totalAmount
     height = height * queueHeight
     height = height - borderHeight
@@ -45,7 +45,7 @@ export class Queue extends Component {
   render(){
     const padding = 15
     const queueHeight = 660
-    
+
     //Hack to compensate for border height
     const containerHeight = queueHeight + this.props.donations.length * borderHeight
     const totalAmount = this.props.donations.reduce((prev, curr) => prev + curr.amount, 0)

@@ -29,7 +29,7 @@ export class Admin extends Component {
     return (
       <div style={{...text, display: 'flex', justifyContent: 'space-between'}}>
         <div>{tag}</div>
-        <div style={styles.button} onClick={this.props.removeTag(account, tag)}>X</div>
+        <div style={styles.button} onClick={() => this.props.removeTag(account, tag)}>X</div>
       </div>
     )
   }
@@ -38,7 +38,7 @@ export class Admin extends Component {
     this.props.loadInitialData()
   }
 
-  renderInput(label, placeholder){
+  renderInput(account){
     const rowStyle = {
       display: 'flex',
       justifyContent: 'space-between',
@@ -54,8 +54,8 @@ export class Admin extends Component {
     }
     return (
       <div style={rowStyle}>
-        <input style={input} type='text' placeholder={placeholder}/>
-        <div style={{marginRight: '10px'}}>{label}</div>
+        <input style={input} type='text' placeholder={'Tag name'}/>
+        <div style={styles.button} onClick={() => this.props.addTag(account, 'hard coded tag')}>{'Add'}</div>
       </div>
     )
   }
@@ -72,7 +72,7 @@ export class Admin extends Component {
               <Box key={account._id} title={account._id} height={'200px'}>
                 <div style={box}>
                   { account.value.map(tag => this.renderRow(tag, account._id)) } 
-                  { this.renderInput('Add', 'Tag name')}
+                  { this.renderInput(account._id)}
                 </div>
               </ Box>
             ))
@@ -100,6 +100,10 @@ const mapDispatchToProps = dispatch => {
     removeTag: (account, tag) => {
       console.log('remove tag dispatched')
       dispatch(actions.removeTag(account, tag))
+    },
+    addTag: (account, tag) => {
+      console.log('add tag dispatched')
+      dispatch(actions.addTag(account, tag))
     }
   }
 }

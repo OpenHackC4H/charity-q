@@ -15,6 +15,7 @@ export function* sagas() {
     takeLatest(actions.INSERT_DONATION, insertDonation),
     takeLatest(actions.FETCH_TAGS, fetchTags),
     takeLatest(actions.REMOVE_TAG, removeTag),
+    takeLatest(actions.ADD_TAG, addTag),
     takeLatest(actions.FETCH_LEADERBOARD, fetchLeaderboard)
   ]
 }
@@ -114,13 +115,38 @@ export function* fetchTags() {
   }
 }
 
-export function* removeTag(account, tag) {
-  console.log('removeTag called')
+export function* removeTag(action) {
   try {
     const options = {
-      method: 'DELETE'
+      //method: 'PUT',
+      method: 'DELETE',
+      headers: {
+        "Content-type": 'application/json'
+      },
+      body: JSON.stringify({
+        accountId: action.account,
+        tag: action.tag
+      })
     }
-    const accounts = yield call(fetchApi, 'recipient/tag', options)
+    const accounts = yield call(insertApi, 'recipient/tag', options)
+  } catch(err) {
+    console.log(err)
+  }
+}
+
+export function* addTag(action) {
+  try {
+    const options = {
+      method: 'PUT',
+      headers: {
+        "Content-type": 'application/json'
+      },
+      body: JSON.stringify({
+        accountId: action.account,
+        tag: action.tag
+      })
+    }
+    const accounts = yield call(insertApi, 'recipient/tag', options)
   } catch(err) {
     console.log(err)
   }

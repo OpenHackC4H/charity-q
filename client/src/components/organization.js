@@ -21,9 +21,7 @@ export class Organization extends Component {
             </div>
             <Statistics />
           </div>
-          <div>
-            <Donate />
-          </div>
+          <Donate />
         </div>
       </div>
     )

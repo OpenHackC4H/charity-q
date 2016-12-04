@@ -120,10 +120,11 @@ export class Donate extends Component {
 
   render(){
     const background = {
+      margin: '0 0 0 50%',
       backgroundColor: 'rgb(36,36,36)',
       height: '300px',
       padding: '0 100px',
-      margin: '0 0 0 50%'
+      height: '400px'
     }
 
     const title = {

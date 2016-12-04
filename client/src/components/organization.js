@@ -4,6 +4,7 @@ import Queue from './queue'
 import Statistics from './statistics'
 import Donate from './donate'
 import MyDonation from './mydonation'
+import Search from './search'
 import { connect } from 'react-redux'
 import * as selectors from '../selectors'
 
@@ -14,7 +15,10 @@ export class Organization extends Component {
         <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'space-between', height: '800px'}}>
           <div style={{display: 'flex', justifyContent: 'space-around'}}>
             <Queue />
-            { this.props.activeDonation ? <MyDonation />:<div style={{width: 250}}></div>}
+            <div style={{marginTop: '40px'}}>
+              <Search />          
+              { this.props.activeDonation ? <MyDonation />:<div style={{width: 250}}></div>}
+            </div>
             <Statistics />
           </div>
           <div>

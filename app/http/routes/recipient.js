@@ -13,17 +13,13 @@ const getTags = (req, res, next) => {
 
 const tag = (req, res, next) => {
   recipient.tag(req.body.accountId, req.body.tag)
-  .then(() => {
-    res.end()
-  })
-  .catch(err => {
-    res.send(err)
-  })
+  .then(() => res.end())
+  .catch(err => res.send(err))
 }
 
 const untag = (req, res, next) => {
   recipient.untag(req.body.accountId, req.body.tag)
-  res.end()
+  .then(() => res.end())
 }
 
 router.get('/tags', getTags)

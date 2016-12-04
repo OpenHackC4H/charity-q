@@ -33,19 +33,19 @@ const recipients = [
     type: 'recipient',
     _id: 'ExpenseAccount1',
     account: 'ExpenseAccount1',
-    tags: ['mosquito nets', 'accountants']
+    tags: ['mosquito nets in Uganda']
   },
   {
     type: 'recipient',
     _id: 'ExpenseAccount2',
     account: 'ExpenseAccount2',
-    tags: ['mosquito nets', 'education']
+    tags: ['build schools in nepal']
   },
   {
     type: 'recipient',
     _id: 'ExpenseAccount3',
     account: 'ExpenseAccount3',
-    tags: ['micro loans', 'accountants']
+    tags: ['micro loans in India']
   }
 ]
 

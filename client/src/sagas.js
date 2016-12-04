@@ -101,6 +101,7 @@ export function* insertDonation(action){
     })
     yield call(fetchQueue)
     yield call(fetchLeaderboard)
+    yield call(fetchTotalAmount)
   } catch (error) {
     console.log('insert failed', error)
   }

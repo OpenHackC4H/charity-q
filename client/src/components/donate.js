@@ -70,13 +70,30 @@ export class Donate extends Component {
       this.setState({activePattern: this.state.activePattern+1})
     }
   }
+
+  renderDonateView(column, title, disclaimer, link){
+    return (
+      <div style={column}>
+        <p style={title}>
+          Donate
+        </p>
+        <div>
+          { this.renderInput('Email', 'you@example.com', ()=>{}) }
+          { this.renderInput('Amount', '€50',this.onAmountInput) }
+          <div onClick={this.onDonateClick.bind(this)} style={{...styles.button, marginTop: '10px'}}>Pay with card</div> 
+          <div style={disclaimer}>Untitled Charity Org will charge 15% for daily running costs</div>
+          <div style={link}>Read More</div>   
+        </div>
+      </div>
+    )
+  }
   
   render(){
     const background = {
       backgroundColor: 'rgb(36,36,36)',
       height: '300px',
-      display: 'flex',
-      justifyContent: 'space-around'
+      padding: '0 100px',
+      margin: '0 0 0 50%'
     }
 
     const title = {
@@ -112,18 +129,7 @@ export class Donate extends Component {
 
     return(
       <div style={background}>
-        <div style={column}>
-          <p style={title}>
-            Donate
-          </p>
-          <div>
-            { this.renderInput('Email', 'you@example.com', ()=>{}) }
-            { this.renderInput('Amount', '€50',this.onAmountInput) }
-            <div onClick={this.onDonateClick.bind(this)} style={{...styles.button, marginTop: '10px'}}>Pay with card</div> 
-            <div style={disclaimer}>Untitled Charity Org will charge 15% for daily running costs</div>
-            <div style={link}>Read More</div>   
-          </div>
-        </div>
+        { !this.state.pimping && this.renderDonateView(column, title, disclaimer, link)}
         <div style={column}>
          { this.state.pimping && (
            <div>

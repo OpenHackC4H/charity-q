@@ -44,7 +44,7 @@ export class Queue extends Component {
 
   render(){
     const padding = 15
-    const queueHeight = 400
+    const queueHeight = 660
     
     //Hack to compensate for border height
     const containerHeight = queueHeight + this.props.donations.length * borderHeight

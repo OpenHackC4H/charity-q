@@ -18,7 +18,8 @@ export const text = {
 export const mainBackground = {
   backgroundImage: 'url(assets/background.jpg)',
   backgroundSize: '100%',
-  boxShadow: 'inset 0 0 0 1000px rgba(0,0,0,.4)'
+  boxShadow: 'inset 0 0 0 1000px rgba(0,0,0,.4)',
+  backgroundAttachment: 'fixed'
 }
 
 export const button = {

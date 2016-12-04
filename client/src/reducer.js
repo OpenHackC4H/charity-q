@@ -12,7 +12,8 @@ const initialState = {
   accounts: [],
   leaderboard: [],
   insertingDonation: false,
-  insertDonationDone: false
+  insertDonationDone: false,
+  highlightedDonations: []
 }
 
 function mergeAccountLists(untagged, tagged) {
@@ -57,11 +58,15 @@ export default function reducer(state = initialState, action) {
         //accounts: mergeAccountLists(state.accounts, action.accounts)
       }
      case types.INSERT_DONATION:
-      console.log(action) 
         return {
           ...state,
           insertingDonation: true
         }
+      case types.SEARCH_DONATION:
+        return {
+          ...state,
+          highlightedDonations: state.queue.filter(d => d.email === action.email).map(d => d.email)
+        }  
       case types.INSERT_DONATION_DONE: 
         return {
           ...state,

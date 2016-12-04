@@ -8,7 +8,7 @@ import * as actions from '../actions'
 export class MyDonation extends Component {
   render(){
     let backgroundColor, titleColor
-    if (this.props.donation.email === 'test@test.com'){
+    if (this.props.highlightedDonations && this.props.highlightedDonations.includes(this.props.donation.email)){
       backgroundColor = styles.colors.highlight
       titleColor = styles.colors.highlight
     } else {
@@ -29,7 +29,8 @@ export class MyDonation extends Component {
 
 const mapStateToProps = state => {
   return {
-    donation: selectors.getActiveDonation(state)
+    donation: selectors.getActiveDonation(state),
+    highlightedDonations: state.highlightedDonations
   }
 }
 

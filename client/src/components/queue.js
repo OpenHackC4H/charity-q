@@ -20,7 +20,7 @@ export class Queue extends Component {
   queueGenerator (donation, i, totalAmount, queueHeight) {
     let backgroundColor, height, borderBottom
 
-    if (i === 2) {
+    if (this.props.highlightedDonations.includes(donation.email)) {
       //Highligthed donation (yours)
       backgroundColor = styles.colors.highlight
       borderBottom = `${borderHeight}px solid rgb(254, 255, 76)`
@@ -63,7 +63,8 @@ export class Queue extends Component {
 const mapStateToProps = state => {
   return {
     donations: selectors.getQueue(state),
-    totalAmount: selectors.getTotalAmount(state)
+    totalAmount: selectors.getTotalAmount(state),
+    highlightedDonations: state.highlightedDonations
   }
 }
 

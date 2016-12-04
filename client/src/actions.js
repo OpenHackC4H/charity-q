@@ -13,6 +13,7 @@ export const FETCH_TOTAL_AMOUNT = 'FETCH_TOTAL_AMOUNT'
 export const FETCH_TOTAL_AMOUNT_DONE = 'FETCH_TOTAL_AMOUNT_DONE'
 export const INSERT_DONATION = 'INSERT_DONATION'
 export const INSERT_DONATION_DONE = 'INSERT_DONATION_DONE'
+export const SEARCH_DONATION = 'SEARCH_DONATION'
 
 export function fetchQueue() {
   return {
@@ -118,3 +119,9 @@ export function insertDonationDone() {
   }
 }
 
+export function searchDonation(email) {
+  return {
+    type: SEARCH_DONATION,
+    email
+  }
+}

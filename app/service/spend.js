@@ -24,6 +24,7 @@ module.exports = (s) => {
 
   return donation.queue()
   .then(queued => {
+    queued.reverse()
     const spent = covered(queued, [], amount)
     .map(el => {
       el.state = 'spent'

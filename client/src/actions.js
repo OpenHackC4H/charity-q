@@ -9,6 +9,7 @@ export const REMOVE_TAG = 'REMOVE_TAG'
 export const SET_ACTIVE_DONATION = 'SET_ACTIVE_DONATION'
 export const FETCH_TOTAL_AMOUNT = 'FETCH_TOTAL_AMOUNT'
 export const FETCH_TOTAL_AMOUNT_DONE = 'FETCH_TOTAL_AMOUNT_DONE'
+export const INSERT_DONATION = 'INSERT_DONATION'
 
 export function fetchQueue() {
   return {
@@ -76,5 +77,12 @@ export function setActiveDonation(id) {
   return {
     type: SET_ACTIVE_DONATION,
     id
+  }
+}
+
+export function insertDonation(donation) {
+  return {
+    type: INSERT_DONATION,
+    donation
   }
 }

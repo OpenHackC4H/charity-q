@@ -1,8 +1,11 @@
 import React, { Component } from 'react'
 import * as styles from '../style'
 import Donation, { KING_BADGE, ANGEL_BADGE }  from './donation'
+import { connect } from 'react-redux'
+import * as selectors from '../selectors'
+import * as actions from '../actions'
 
-export default class Donate extends Component {
+export class Donate extends Component {
   constructor(props){
     super(props)
     this.state = {
@@ -17,11 +20,20 @@ export default class Donate extends Component {
     this.setState({pimping: true })
   }
 
-  onAmountInput(event){
-    this.setState({amount: event.target.value })
+  onConfirmClick() {
+    const donation = {
+      pattern: this.state.activePattern,
+      amount: this.state.amount,
+      email: 'test@test.com'
+    }
+    this.props.insertDonation(donation)
   }
 
-  renderInput(label, placeholder){
+  onAmountInput(event){
+    this.setState({amount: parseInt(event.target.value) })
+  }
+
+  renderInput(label, placeholder, onChange){
     const rowStyle = {
       display: 'flex',
       justifyContent: 'space-between',
@@ -38,7 +50,7 @@ export default class Donate extends Component {
     return (
       <div style={rowStyle}>
         <div style={{marginRight: '10px'}}>{label}</div>
-        <input onChange={this.onAmountInput.bind(this)} style={input} type='text' placeholder={placeholder}/>
+        <input onChange={onChange.bind(this)} style={input} placeholder={placeholder}/>
       </div>
     )
   }
@@ -105,8 +117,8 @@ export default class Donate extends Component {
             Donate
           </p>
           <div>
-            { this.renderInput('Email', 'you@example.com') }
-            { this.renderInput('Amount', '€50') }
+            { this.renderInput('Email', 'you@example.com', ()=>{}) }
+            { this.renderInput('Amount', '€50',this.onAmountInput) }
             <div onClick={this.onDonateClick.bind(this)} style={{...styles.button, marginTop: '10px'}}>Pay with card</div> 
             <div style={disclaimer}>Untitled Charity Org will charge 15% for daily running costs</div>
             <div style={link}>Read More</div>   
@@ -129,7 +141,7 @@ export default class Donate extends Component {
                 </div> 
               </div>
               
-              <div style={{...styles.button, marginTop: '10px'}}>Donate</div> 
+              <div onClick={this.onConfirmClick.bind(this)} style={{...styles.button, marginTop: '10px'}}>Confirm</div> 
            </div>
          )}
         </div>
@@ -137,3 +149,19 @@ export default class Donate extends Component {
     )
   }
 }
+
+// const mapStateToProps = state => {
+//   return {
+//     donation: selectors.getActiveDonation(state)
+//   }
+// }
+
+const mapDispatchToProps = dispatch => {
+  return {
+    insertDonation: (donation) => {
+      dispatch(actions.insertDonation(donation))
+    }
+  }
+}
+
+export default connect(null, mapDispatchToProps)(Donate)

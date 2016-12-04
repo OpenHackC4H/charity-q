@@ -12,13 +12,19 @@ export function* sagas() {
   yield [
     takeLatest(actions.FETCH_TOTAL_AMOUNT, fetchTotalAmount),
     takeLatest(actions.FETCH_QUEUE, fetchQueue),
-    takeLatest(actions.FETCH_ACCOUNTS, fetchAccounts)
+    takeLatest(actions.FETCH_ACCOUNTS, fetchAccounts),
+    takeLatest(actions.INSERT_DONATION, insertDonation)
   ]
 }
 
 export function fetchApi(url, options = {}) {
   return fetch(url, options)
     .then(response => response.json())
+}
+
+export function insertApi(url, options = {}) {
+  return fetch(url, options)
+    .then(response => response)
 }
 
 export function* fetchQueue() {
@@ -60,5 +66,26 @@ export function* fetchAccounts() {
   } catch(err) {
     console.log(err)
     // Error handling
+  }
+}
+
+export function* insertDonation(action){
+  try {
+    const { pattern, amount, email } = action.donation
+    const payload = {
+      pattern,
+      amount,
+      email
+    }
+    yield call(insertApi, 'donation', {
+      body: JSON.stringify(payload), 
+      method: 'POST', 
+      headers: new Headers({
+        'Content-Type': 'application/json'
+      })
+    })
+    yield call(fetchQueue)
+  } catch (error) {
+    console.log('insert failed', error)
   }
 }
